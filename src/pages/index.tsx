@@ -1,4 +1,5 @@
 import { gql, useLazyQuery } from "@apollo/client";
+import { Button } from "@material-tailwind/react";
 import { useState } from "react";
 
 const GET_CHARACTERS = gql`
@@ -34,14 +35,14 @@ export default function ApolloClient() {
             setEmail(e.target.value);
           }}
         />
-        <button
+        <Button
           onClick={() =>
             getUserDetailByApolloClientAPICall({ variables: { name: email } })
           }
         >
           {loading ? <div /> : <div>{data?.characters.results[0].name}</div>}
           <span>APOLLO CLIENT</span>
-        </button>
+        </Button>
       </div>
       {/* Display the data from the query here */}
     </div>
