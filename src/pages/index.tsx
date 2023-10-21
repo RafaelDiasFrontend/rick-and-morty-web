@@ -11,12 +11,6 @@ const GET_CHARACTERS = gql`
         name
       }
     }
-    location(id: 1) {
-      id
-    }
-    episodesByIds(ids: [1, 2]) {
-      id
-    }
   }
 `;
 
@@ -25,6 +19,7 @@ export default function ApolloClient() {
   const [getUserDetailByApolloClientAPICall, { loading, error, data }] =
     useLazyQuery(GET_CHARACTERS);
 
+  console.log(data);
   if (error) return <div>Error!</div>;
 
   return (
