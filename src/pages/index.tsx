@@ -1,23 +1,23 @@
 import { Key, useState } from "react";
 import Character from "@/lib/types/CharacterType";
-import { fetchCharacters } from "@/lib/services/characters/characterQueryService";
+import Layout from "@/components/global/Layout";
+import { fetchCharacters } from "@/lib/services/characters/characterServices";
 
 export default function ApolloClient({ data }: any) {
   const { characters } = data;
   return (
-    <div className="">
+    <Layout>
       <div>
         {characters.results.map((character: Character, index: Key) => (
           <h1 key={index}>{character.name}</h1>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 }
 
 export async function getStaticProps() {
-  // Fetch data using the Apollo Client configured in your separate module
-  const data = await fetchCharacters(1); // Set the page as needed
+  const data = await fetchCharacters(1);
 
   return {
     props: {

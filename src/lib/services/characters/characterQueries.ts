@@ -10,3 +10,12 @@ export const GET_CHARACTERS = gql`
     }
   }
 `;
+
+export const GET_CHARACTER_BY_ID = gql`
+  query GetCharacterById($id: ID!) {
+    character(id: $id) {
+      id
+      name
+    }
+  }
+`;

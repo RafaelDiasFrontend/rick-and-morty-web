@@ -1,10 +1,10 @@
 import React from "react";
-import Character from "@/lib/types/CharacterType";
+import CharacterType from "@/lib/types/CharacterType";
 
-function CharacterList({ characters }: { characters: Character[] }) {
+function CharacterList({ characters }: { characters: CharacterType[] }) {
   return (
     <div>
-      {characters.map((character: Character) => (
+      {characters.map((character: CharacterType) => (
         <h1 key={character.id}>{character.name}</h1>
       ))}
     </div>
