@@ -1,4 +1,4 @@
-interface Character {
+export default interface Character {
   id: number;
   name: string;
   status: "Alive" | "Dead" | "unknown";
