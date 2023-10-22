@@ -1,4 +1,4 @@
-interface Location {
+interface LocationType {
   id: number;
   name: string;
   type: string;

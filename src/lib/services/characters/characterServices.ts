@@ -20,7 +20,7 @@ export async function fetchCharacterById(id: string) {
       query: GET_CHARACTER_BY_ID,
       variables: { id },
     });
-    return data.character; // Assuming your character data is nested under 'character' in the response
+    return data.character;
   } catch (error) {
     console.error("Error fetching character by ID:", error);
     throw error;

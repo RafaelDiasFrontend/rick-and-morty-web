@@ -1,27 +1,63 @@
-import { Key, useState } from "react";
-import Character from "@/lib/types/CharacterType";
+import React from "react";
+import { Key } from "react";
+import CharacterType from "@/lib/types/CharacterType";
 import Layout from "@/components/global/Layout";
-import { fetchCharacters } from "@/lib/services/characters/characterServices";
+import { fetchAll } from "@/lib/services/getAllService";
+import CharacterList from "@/components/characters/CharacterList";
 
-export default function ApolloClient({ data }: any) {
-  const { characters } = data;
+interface HomePageProps {
+  data: {
+    characters: {
+      results: CharacterType[];
+    };
+    episodes: {
+      results: CharacterType[];
+    };
+    locations: {
+      results: CharacterType[];
+    };
+  };
+}
+
+export default function ApolloClient({ data }: HomePageProps) {
   return (
     <Layout>
-      <div>
-        {characters.results.map((character: Character, index: Key) => (
-          <h1 key={index}>{character.name}</h1>
-        ))}
+      <div className="flex">
+        <CharacterList
+          characters={data.characters.results}
+          linkPrefix="/characters"
+        />
+        <CharacterList
+          characters={data.episodes.results}
+          linkPrefix="/episodes"
+        />
+        <CharacterList
+          characters={data.locations.results}
+          linkPrefix="/locations"
+        />
       </div>
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const data = await fetchCharacters(1);
-
-  return {
-    props: {
-      data,
-    },
-  };
+  try {
+    const data = await fetchAll();
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        data: {
+          characters: { results: [] },
+          episodes: { results: [] },
+          locations: { results: [] },
+        },
+      },
+    };
+  }
 }
