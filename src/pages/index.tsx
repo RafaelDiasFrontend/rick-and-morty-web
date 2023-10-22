@@ -3,7 +3,7 @@ import { Key } from "react";
 import CharacterType from "@/lib/types/CharacterType";
 import Layout from "@/components/global/Layout";
 import { fetchAll } from "@/lib/services/getAllService";
-import CharacterList from "@/components/characters/CharacterList";
+import List from "@/components/homepage/List";
 
 interface HomePageProps {
   data: {
@@ -23,18 +23,9 @@ export default function ApolloClient({ data }: HomePageProps) {
   return (
     <Layout>
       <div className="flex">
-        <CharacterList
-          characters={data.characters.results}
-          linkPrefix="/characters"
-        />
-        <CharacterList
-          characters={data.episodes.results}
-          linkPrefix="/episodes"
-        />
-        <CharacterList
-          characters={data.locations.results}
-          linkPrefix="/locations"
-        />
+        <List characters={data.characters.results} linkPrefix="/characters" />
+        <List characters={data.episodes.results} linkPrefix="/episodes" />
+        <List characters={data.locations.results} linkPrefix="/locations" />
       </div>
     </Layout>
   );

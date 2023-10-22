@@ -1,4 +1,4 @@
-interface LocationType {
+export default interface LocationType {
   id: number;
   name: string;
   type: string;
