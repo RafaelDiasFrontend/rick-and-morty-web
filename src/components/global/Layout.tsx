@@ -1,31 +1,31 @@
-import Head from "next/head";
-import { ReactNode } from "react";
+import Head from 'next/head'
+import { ReactNode } from 'react'
 
 interface LayoutProps {
-  showNav?: Boolean;
-  showFooter?: Boolean;
-  children: ReactNode;
-  title?: String;
-  description?: String;
+  showNav?: Boolean
+  showFooter?: Boolean
+  children: ReactNode
+  title?: String
+  description?: String
 }
 
 export default function Layout({
-  title = "default",
-  description = "default",
+  title = 'default',
+  description = 'default',
   showNav = true,
   showFooter = true,
   children,
 }: LayoutProps) {
-  const mainTitle = `Rick e morty | ${title}`;
+  const mainTitle = `Rick e morty | ${title}`
   return (
     <>
       <Head>
         <title>{mainTitle}</title>
-        <meta name="description" content={String(description)} key="desc" />
+        <meta name='description' content={String(description)} key='desc' />
       </Head>
-      {showNav && <nav>{/* navbar aqui dentro */}</nav>}
+      {showNav && <nav>teste</nav>}
       <main>{children}</main>
       {showFooter && <footer>{/* footer aqui dentro */}</footer>}
     </>
-  );
+  )
 }
