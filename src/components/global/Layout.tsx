@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
+import DrawerAppBar from './headers/NavBarDefault'
 
 interface LayoutProps {
   showNav?: Boolean
@@ -23,7 +24,11 @@ export default function Layout({
         <title>{mainTitle}</title>
         <meta name='description' content={String(description)} key='desc' />
       </Head>
-      {showNav && <nav>teste</nav>}
+      {showNav && (
+        <nav>
+          <DrawerAppBar />
+        </nav>
+      )}
       <main>{children}</main>
       {showFooter && <footer>{/* footer aqui dentro */}</footer>}
     </>
