@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
-// import RickyAndMortySvg from '../../../../public/rickyAndMortySvg.svg'
 import React from 'react'
+import LinkTo from '../LinkTo'
 
 export default function FooterDefault() {
   return (
@@ -13,8 +13,12 @@ export default function FooterDefault() {
         }}
         display='flex'
       >
-        <div>{/* <RickyAndMortySvg /> */}</div>
-        <div>Voltar ao topo</div>
+        <div>
+          <img src='/svgs/ricky.svg' alt='ricky and morty' />
+        </div>
+        <LinkTo href='#hero-img'>
+          <div>Voltar ao topo</div>
+        </LinkTo>
       </Box>
     </>
   )
