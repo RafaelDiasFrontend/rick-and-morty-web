@@ -1,16 +1,14 @@
 import client from '@/lib/apolloClient'
 import '@/styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
 import {
-  Box,
-  Button,
-  CssBaseline,
-  IconButton,
-  PaletteMode,
-  useTheme,
-} from '@mui/material'
+  DarkMode,
+  DarkModeOutlined,
+  LightMode,
+  LightModeOutlined,
+} from '@mui/icons-material'
+
+import { Box, Button, CssBaseline, PaletteMode, useTheme } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import type { AppProps } from 'next/app'
 import * as React from 'react'
@@ -35,10 +33,10 @@ export default function App({ Component, pageProps }: AppProps) {
         ? {
             // palette values for light mode
             background: {
-              default: 'fafafa',
+              default: '#fff',
             },
             text: {
-              primary: '#000000',
+              primary: '#313234',
             },
           }
         : {
@@ -56,7 +54,31 @@ export default function App({ Component, pageProps }: AppProps) {
   const theme = React.useMemo(
     () =>
       createTheme({
-        ...getDesignTokens(mode),
+        palette: {
+          primary: {
+            main: '#11B0C8', // Substitua pela cor primária desejada
+          },
+          mode, // Isso definirá o modo de acordo com a variável mode
+          ...(mode === 'light'
+            ? {
+                // Configurações de cores para o modo claro
+                background: {
+                  default: '#fff',
+                },
+                text: {
+                  primary: '#313234',
+                },
+              }
+            : {
+                // Configurações de cores para o modo escuro
+                background: {
+                  default: '#000000',
+                },
+                text: {
+                  primary: '#fff',
+                },
+              }),
+        },
         typography: {
           fontFamily: ['Inter', 'Roboto', 'sans-serif'].join(','),
         },
@@ -78,27 +100,72 @@ export default function App({ Component, pageProps }: AppProps) {
 
 export function ThemeBtn() {
   const theme = useTheme()
+  const [selectedMode, setSelectedMode] = React.useState('light') // Inicializado com 'light'
+
   const colorMode = React.useContext(ColorModeContext)
+
   return (
     <>
-      <Button
-        onClick={colorMode.toggleColorMode}
-        variant='contained'
-        startIcon={
-          theme.palette.mode === 'dark' ? (
-            <Brightness7Icon />
-          ) : (
-            <Brightness4Icon />
-          )
-        }
-        sx={{
-          width: '180px',
-          backgroundColor: '#11B0C8',
-          fontWeight: 'bold',
-        }}
-      >
-        Mudar tema
-      </Button>
+      <Box display={'flex'} gap={1}>
+        <Button
+          sx={{
+            borderRadius: 5,
+            textTransform: 'initial',
+            color: selectedMode === 'dark' ? 'white' : '#313234',
+            backgroundColor:
+              selectedMode === 'dark'
+                ? theme.palette.primary.main
+                : 'transparent',
+            '&:hover': {
+              backgroundColor:
+                selectedMode === 'dark'
+                  ? theme.palette.primary.dark
+                  : 'transparent',
+            },
+          }}
+          variant={selectedMode === 'dark' ? 'contained' : 'text'}
+          startIcon={
+            selectedMode === 'dark' ? <DarkMode /> : <DarkModeOutlined />
+          }
+          onClick={() => {
+            if (selectedMode !== 'dark') {
+              setSelectedMode('dark') // Ativa o modo escuro
+              colorMode.toggleColorMode()
+            }
+          }}
+        >
+          Escuro
+        </Button>
+        <Button
+          sx={{
+            borderRadius: 5,
+            textTransform: 'initial',
+            color: selectedMode === 'light' ? 'white' : 'theme.palette.text',
+            backgroundColor:
+              selectedMode === 'light'
+                ? theme.palette.primary.main
+                : 'transparent',
+            '&:hover': {
+              backgroundColor:
+                selectedMode === 'light'
+                  ? theme.palette.primary.dark
+                  : 'transparent',
+            },
+          }}
+          startIcon={
+            selectedMode === 'light' ? <LightMode /> : <LightModeOutlined />
+          }
+          variant={selectedMode === 'light' ? 'contained' : 'text'}
+          onClick={() => {
+            if (selectedMode !== 'light') {
+              setSelectedMode('light')
+              colorMode.toggleColorMode()
+            }
+          }}
+        >
+          Claro
+        </Button>
+      </Box>
     </>
   )
 }

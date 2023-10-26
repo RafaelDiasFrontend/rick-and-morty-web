@@ -1,5 +1,6 @@
 import { ThemeBtn } from '@/pages/_app'
-import { Box, Container, Typography, useTheme } from '@mui/material'
+import { DarkMode } from '@mui/icons-material'
+import { Box, Button, Container, Typography, useTheme } from '@mui/material'
 
 export default function Hero() {
   const theme = useTheme()
@@ -10,7 +11,6 @@ export default function Hero() {
         <Box
           display={['flex']}
           flexDirection={['column', 'column', 'row']}
-          gap={[2, 2, 3, 4]}
           px={'24px'}
           pt={8}
           pb={[0, 0, 1, 2]}
@@ -19,24 +19,28 @@ export default function Hero() {
           <Box
             display={'flex'}
             flexDirection={['column', 'column']}
-            justifyContent={'center'}
-            gap={[2, 2, 3, 4]}
             width={['100%', '100%', '50%', '40%']}
+            justifyContent={'center'}
           >
             <Typography
+              marginTop={'34px'}
               color='text.primary'
               fontSize={['30px', '40px', '48px']}
               fontWeight={'bold'}
               variant='h1'
+              maxWidth={'400px'}
+              marginBottom={'24px'}
             >
-              Saiba tudo em um só lugar.
+              Saiba tudo em um só
+              <span style={{ color: '#11B0C8' }}> lugar.</span>
             </Typography>
 
             <Typography
               color='text.primary'
-              fontSize={['14px', '15px', '16px']}
-              fontWeight={'bold'}
+              fontSize={['16px', '15px', '14px']}
+              fontWeight={'regular'}
               variant='h1'
+              marginBottom={'54px'}
             >
               Personagens, localizações, episódios e muito mais.
             </Typography>
