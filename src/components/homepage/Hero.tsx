@@ -1,3 +1,4 @@
+import { ThemeBtn } from "@/pages/_app";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -26,16 +27,7 @@ export default function Hero() {
               fontWeight={"bold"}
               variant="h1"
             >
-              Saiba tudo em um só{" "}
-              <Typography
-                fontSize={"48px"}
-                fontWeight={"bold"}
-                variant="h1"
-                display={"inline"}
-                color="#11B0C8"
-              >
-                lugar.
-              </Typography>
+              Saiba tudo em um só lugar.
             </Typography>
 
             <Typography
@@ -56,6 +48,7 @@ export default function Hero() {
             >
               Mudar tema
             </Button>
+            <ThemeBtn />
           </Box>
 
           <Box ml="auto" width={["100%", "100%", "50%", "50%"]}>

@@ -2,6 +2,7 @@ import Head from "next/head";
 import { ReactNode } from "react";
 import NavBarDefault from "./layout/NavBarDefault";
 import FooterDefault from "./layout/FooterDefault";
+import { Box } from "@mui/material";
 
 interface LayoutProps {
   showNav?: Boolean;
