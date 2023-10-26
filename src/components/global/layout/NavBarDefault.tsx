@@ -32,7 +32,7 @@ const navItems = [
   { name: 'Contato', link: '/contato' },
 ]
 
-export default function DrawerAppBar(props: Props) {
+export default function NavBarDefault(props: Props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
