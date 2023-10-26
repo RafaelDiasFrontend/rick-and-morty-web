@@ -68,14 +68,16 @@ export default function NavBarDefault(props: Props) {
     <Box sx={{ display: "flex" }}>
       <AppBar
         position="sticky"
-        sx={{ backgroundColor: "white", py: 1 }}
+        sx={{ backgroundColor: "background.default", py: 1 }}
+        color="default"
+        enableColorOnDark
         component="nav"
       >
         <Container>
           <Toolbar sx={{ justifyItems: "space-between" }}>
             <Typography
               sx={{
-                color: "#111",
+                color: "text.primary",
                 display: { sm: "block" },
                 mr: "auto",
               }}
@@ -88,7 +90,7 @@ export default function NavBarDefault(props: Props) {
                   <Button
                     key={index}
                     sx={{
-                      color: "#111",
+                      color: "text.primary",
                       textTransform: "initial",
                       fontWeight: "bold",
                     }}
@@ -103,7 +105,11 @@ export default function NavBarDefault(props: Props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ ml: "auto", color: "#111", display: { sm: "none" } }}
+              sx={{
+                ml: "auto",
+                color: "text.primary",
+                display: { sm: "none" },
+              }}
             >
               <MenuIcon />
             </IconButton>
