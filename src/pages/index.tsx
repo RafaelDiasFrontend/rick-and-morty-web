@@ -4,6 +4,7 @@ import CharacterType from "@/lib/types/CharacterType";
 import Layout from "@/components/global/Layout";
 import { fetchAll } from "@/lib/services/getAllService";
 import List from "@/components/homepage/List";
+import Hero from "@/components/homepage/Hero";
 
 interface HomePageProps {
   data: {
@@ -22,11 +23,10 @@ interface HomePageProps {
 export default function ApolloClient({ data }: HomePageProps) {
   return (
     <Layout>
-      <div className="flex">
-        <List characters={data.characters.results} linkPrefix="/characters" />
-        <List characters={data.episodes.results} linkPrefix="/episodes" />
-        <List characters={data.locations.results} linkPrefix="/locations" />
-      </div>
+      <Hero />
+      {/*<List characters={data.characters.results} linkPrefix="/characters" />
+      <List characters={data.episodes.results} linkPrefix="/episodes" />
+      <List characters={data.locations.results} linkPrefix="/locations" />*/}
     </Layout>
   );
 }
