@@ -100,72 +100,61 @@ export default function App({ Component, pageProps }: AppProps) {
 
 export function ThemeBtn() {
   const theme = useTheme()
-  const [selectedMode, setSelectedMode] = React.useState('light') // Inicializado com 'light'
-
   const colorMode = React.useContext(ColorModeContext)
 
+  const modeOptions = [
+    {
+      mode: 'dark',
+      label: 'Escuro',
+      icon: <DarkMode />,
+      outlinedIcon: <DarkModeOutlined />,
+    },
+    {
+      mode: 'light',
+      label: 'Claro',
+      icon: <LightMode />,
+      outlinedIcon: <LightModeOutlined />,
+    },
+  ]
+
+  const selectedMode = theme.palette.mode
+
   return (
-    <>
-      <Box display={'flex'} gap={1}>
+    <Box display={'flex'} gap={1}>
+      {modeOptions.map((option) => (
         <Button
+          key={option.mode}
           sx={{
             borderRadius: 5,
             textTransform: 'initial',
-            color: selectedMode === 'dark' ? 'white' : '#313234',
+            color:
+              selectedMode === option.mode
+                ? 'white'
+                : theme.palette.text.primary,
             backgroundColor:
-              selectedMode === 'dark'
+              selectedMode === option.mode
                 ? theme.palette.primary.main
                 : 'transparent',
             '&:hover': {
               backgroundColor:
-                selectedMode === 'dark'
+                selectedMode === option.mode
                   ? theme.palette.primary.dark
                   : 'transparent',
             },
           }}
-          variant={selectedMode === 'dark' ? 'contained' : 'text'}
+          variant={selectedMode === option.mode ? 'contained' : 'text'}
           startIcon={
-            selectedMode === 'dark' ? <DarkMode /> : <DarkModeOutlined />
+            selectedMode === option.mode ? option.icon : option.outlinedIcon
           }
           onClick={() => {
-            if (selectedMode !== 'dark') {
-              setSelectedMode('dark') // Ativa o modo escuro
+            if (selectedMode !== option.mode) {
               colorMode.toggleColorMode()
             }
           }}
         >
-          Escuro
+          {option.label}
         </Button>
-        <Button
-          sx={{
-            borderRadius: 5,
-            textTransform: 'initial',
-            color: selectedMode === 'light' ? 'white' : 'theme.palette.text',
-            backgroundColor:
-              selectedMode === 'light'
-                ? theme.palette.primary.main
-                : 'transparent',
-            '&:hover': {
-              backgroundColor:
-                selectedMode === 'light'
-                  ? theme.palette.primary.dark
-                  : 'transparent',
-            },
-          }}
-          startIcon={
-            selectedMode === 'light' ? <LightMode /> : <LightModeOutlined />
-          }
-          variant={selectedMode === 'light' ? 'contained' : 'text'}
-          onClick={() => {
-            if (selectedMode !== 'light') {
-              setSelectedMode('light')
-              colorMode.toggleColorMode()
-            }
-          }}
-        >
-          Claro
-        </Button>
-      </Box>
-    </>
+      ))}
+    </Box>
   )
 }

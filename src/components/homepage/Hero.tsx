@@ -37,7 +37,7 @@ export default function Hero() {
 
             <Typography
               color='text.primary'
-              fontSize={['16px', '15px', '14px']}
+              fontSize={'1rem'}
               fontWeight={'regular'}
               variant='h1'
               marginBottom={'54px'}
