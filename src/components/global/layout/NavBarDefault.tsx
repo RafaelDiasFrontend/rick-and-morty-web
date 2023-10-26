@@ -67,6 +67,7 @@ export default function NavBarDefault(props: Props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar
+        elevation={0}
         position='sticky'
         sx={{
           py: 1,

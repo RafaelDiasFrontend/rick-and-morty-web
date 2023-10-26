@@ -25,10 +25,10 @@ export default function Hero() {
             <Typography
               marginTop={'34px'}
               color='text.primary'
-              fontSize={['30px', '40px', '48px']}
+              fontSize={['2.4rem', '40px', '48px']}
               fontWeight={'bold'}
               variant='h1'
-              maxWidth={'400px'}
+              maxWidth={'21rem'}
               marginBottom={'24px'}
             >
               Saiba tudo em um só
@@ -37,7 +37,9 @@ export default function Hero() {
 
             <Typography
               color='text.primary'
-              fontSize={'1rem'}
+              fontSize={['0.85rem', '1rem']}
+              maxWidth={['17rem', '33rem']}
+              lineHeight={1.4}
               fontWeight={'regular'}
               variant='h1'
               marginBottom={'54px'}
@@ -59,9 +61,9 @@ export default function Hero() {
                   : '/homeimages/herolightimage.png'
               })`,
             }}
+            height='436px'
             ml='auto'
             width={['100%', '100%', '50%', '50%']}
-            minHeight={'30vh'}
           ></Box>
         </Box>
       </Container>
