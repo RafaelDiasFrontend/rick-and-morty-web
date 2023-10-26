@@ -1,29 +1,31 @@
 import { ThemeBtn } from "@/pages/_app";
-import { Box, Button, Container, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
 export default function Hero() {
+  const theme = useTheme();
+
   return (
-    <Box bgcolor="black">
-      <Container sx={{ minHeight: "10vh" }}>
+    <Box bgcolor="background.default">
+      <Container sx={{ minHeight: "40vh" }}>
         <Box
           display={["flex"]}
           flexDirection={["column", "column", "row"]}
-          gap={4}
+          gap={[2, 2, 3, 4]}
           px={"24px"}
           pt={8}
-          pb={4}
+          pb={[0, 0, 1, 2]}
+          height="100%"
         >
           <Box
             display={"flex"}
             flexDirection={["column", "column"]}
             justifyContent={"center"}
-            gap={4}
+            gap={[2, 2, 3, 4]}
             width={["100%", "100%", "50%", "40%"]}
           >
             <Typography
-              color="white"
-              fontSize={"48px"}
+              color="text.primary"
+              fontSize={["30px", "40px", "48px"]}
               fontWeight={"bold"}
               variant="h1"
             >
@@ -31,28 +33,33 @@ export default function Hero() {
             </Typography>
 
             <Typography
-              color="white"
-              fontSize={"16px"}
+              color="text.primary"
+              fontSize={["14px", "15px", "16px"]}
               fontWeight={"bold"}
               variant="h1"
             >
               Personagens, localizações, episódios e muito mais.
             </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                width: "150px",
-                backgroundColor: "#11B0C8",
-                fontWeight: "bold",
-              }}
-            >
-              Mudar tema
-            </Button>
+
             <ThemeBtn />
           </Box>
 
-          <Box ml="auto" width={["100%", "100%", "50%", "50%"]}>
-            <Image
+          <Box
+            sx={{
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              backgroundImage: `url(${
+                theme.palette.mode === "dark"
+                  ? "/homeimages/heroImage.png"
+                  : "/homeimages/herolightimage.png"
+              })`,
+            }}
+            ml="auto"
+            width={["100%", "100%", "50%", "50%"]}
+            minHeight={"30vh"}
+          >
+            {/*<Image
               width={300}
               height={300}
               style={{
@@ -60,10 +67,15 @@ export default function Hero() {
                 height: "100%",
                 objectFit: "contain",
                 objectPosition: "bottom",
+                maxHeight: "400px",
               }}
               alt="heroimage"
-              src="/homeimages/heroImage.png"
-            />
+              src={
+                theme.palette.mode === "dark"
+                  ? "/homeimages/heroImage.png"
+                  : "/homeimages/herolightimage.png"
+              }
+            />*/}
           </Box>
         </Box>
       </Container>
