@@ -1,27 +1,33 @@
 import CharacterType from '@/lib/types/CharacterType'
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 import LinkTo from '../global/LinkTo'
 
-const cardContentItems = [
-  {
-    text: 'Vivo',
-    srcIcon: '/svgs/pulse.svg',
-  },
-  {
-    text: 'Humano',
-    srcIcon: '/svgs/alien.svg',
-  },
-  {
-    text: 'Earth (C-137)',
-    srcIcon: '/svgs/planet.svg',
-  },
-]
-
 export default function CharactersCard(): CharacterType {
+  const theme = useTheme()
+  const cardContentItems = [
+    {
+      text: 'Vivo',
+      srcIcon: '/svgs/pulse.svg',
+    },
+    {
+      text: 'Humano',
+      srcIcon:
+        theme.palette.mode === 'dark'
+          ? '/svgs/alien.svg'
+          : '/svgs/alienLight.svg',
+    },
+    {
+      text: 'Earth (C-137)',
+      srcIcon:
+        theme.palette.mode === 'dark'
+          ? '/svgs/planet.svg'
+          : '/svgs/planetLight.svg',
+    },
+  ]
   return (
     <>
       <Card
@@ -31,7 +37,8 @@ export default function CharactersCard(): CharacterType {
           borderRadius: '30px',
           my: 8,
         }}
-        elevation={12}
+        elevation={4}
+        color='default'
       >
         <CardMedia
           component='img'
@@ -42,9 +49,15 @@ export default function CharactersCard(): CharacterType {
         />
         <Box>
           <Box my={'16px'}>
-            <Typography variant='body1' color='white' fontWeight={'bold'}>
-              Rick Sanchez
-            </Typography>
+            <LinkTo href='/id-do-character'>
+              <Typography
+                variant='body1'
+                color='text.primary'
+                fontWeight={'bold'}
+              >
+                Rick Sanchez
+              </Typography>
+            </LinkTo>
           </Box>
           <Box display='flex-col' gap={'8px'}>
             {cardContentItems.map((item, index) => (
@@ -55,18 +68,25 @@ export default function CharactersCard(): CharacterType {
                   src={item.srcIcon}
                   alt={'pulse'}
                 />
-                <Typography variant='body1' color='white'>
+                <Typography variant='body1' color='text.primary'>
                   {item.text}
                 </Typography>
               </Box>
             ))}
           </Box>
 
-          <LinkTo href='/id-do-character'>
-            <Typography variant='body2' color='white' marginTop={'30px'}>
-              Saiba Mais
-            </Typography>
-          </LinkTo>
+          <Box display='flex' justifyContent={'flex-end'} marginBottom={'4px'}>
+            <LinkTo href='/id-do-character'>
+              <Typography
+                variant='body2'
+                color='text.primary'
+                marginTop={'30px'}
+                marginRight={'4px'}
+              >
+                Saiba Mais
+              </Typography>
+            </LinkTo>
+          </Box>
         </Box>
       </Card>
     </>

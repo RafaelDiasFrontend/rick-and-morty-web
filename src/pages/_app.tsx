@@ -63,6 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
             ? {
                 background: {
                   default: '#fff',
+                  paper: '#F1F1F1;',
                 },
                 text: {
                   primary: '#313234',
@@ -71,6 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
             : {
                 background: {
                   default: '#000000',
+                  paper: '#313234',
                 },
                 text: {
                   primary: '#fff',
