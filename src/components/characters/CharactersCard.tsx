@@ -1,94 +1,106 @@
-import CharacterType from '@/lib/types/CharacterType'
-import { Box, useTheme } from '@mui/material'
-import Card from '@mui/material/Card'
-import CardMedia from '@mui/material/CardMedia'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import LinkTo from '../global/LinkTo'
+import CharacterType from "@/lib/types/CharacterType";
+import { Box, useTheme } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
+import LinkTo from "../global/LinkTo";
+import Link from "next/link";
 
-export default function CharactersCard(): CharacterType {
-  const theme = useTheme()
+interface CharactersCardProps {
+  character: CharacterType;
+}
+
+export default function CharactersCard({ character }: CharactersCardProps) {
+  const { id, name, image } = character;
+  const theme = useTheme();
   const cardContentItems = [
     {
-      text: 'Vivo',
-      srcIcon: '/svgs/pulse.svg',
+      text: "Vivo",
+      srcIcon: "/svgs/pulse.svg",
     },
     {
-      text: 'Humano',
+      text: "Humano",
       srcIcon:
-        theme.palette.mode === 'dark'
-          ? '/svgs/alien.svg'
-          : '/svgs/alienLight.svg',
+        theme.palette.mode === "dark"
+          ? "/svgs/alien.svg"
+          : "/svgs/alienLight.svg",
     },
     {
-      text: 'Earth (C-137)',
+      text: "Earth (C-137)",
       srcIcon:
-        theme.palette.mode === 'dark'
-          ? '/svgs/planet.svg'
-          : '/svgs/planetLight.svg',
+        theme.palette.mode === "dark"
+          ? "/svgs/planet.svg"
+          : "/svgs/planetLight.svg",
     },
-  ]
+  ];
   return (
     <>
-      <Card
-        sx={{
-          maxWidth: 345,
-          padding: 2,
-          borderRadius: '30px',
-          my: 8,
-        }}
-        elevation={4}
-        color='default'
-      >
-        <CardMedia
-          component='img'
-          height='194'
-          image='/imgs/ricky.jpg'
-          alt='Paella dish'
-          sx={{ backgroundColor: 'transparent', borderRadius: '20px' }}
-        />
-        <Box>
-          <Box my={'16px'}>
-            <LinkTo href='/id-do-character'>
+      <LinkTo href={`/character/${id}`}>
+        <Card
+          sx={{
+            maxWidth: 345,
+            padding: 2,
+            borderRadius: "30px",
+          }}
+          elevation={4}
+          color="default"
+        >
+          <CardMedia
+            component="img"
+            height="194"
+            image={image ? image : "/imgs/ricky.jpg"}
+            alt="Paella dish"
+            sx={{ backgroundColor: "transparent", borderRadius: "20px" }}
+          />
+          <Box>
+            <Box my={"16px"}>
               <Typography
-                variant='body1'
-                color='text.primary'
-                fontWeight={'bold'}
+                variant="body1"
+                color="text.primary"
+                fontWeight={"bold"}
               >
-                Rick Sanchez
+                {name}
               </Typography>
-            </LinkTo>
-          </Box>
-          <Box display='flex-col' gap={'8px'}>
-            {cardContentItems.map((item, index) => (
-              <Box key={index} display='flex' alignItems={'center'} gap={'4px'}>
-                <Image
-                  width={16}
-                  height={16}
-                  src={item.srcIcon}
-                  alt={'pulse'}
-                />
-                <Typography variant='body1' color='text.primary'>
-                  {item.text}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
+            </Box>
+            <Box display="flex-col" gap={"8px"}>
+              {cardContentItems.map((item, index) => (
+                <Box
+                  key={index}
+                  display="flex"
+                  alignItems={"center"}
+                  gap={"4px"}
+                >
+                  <Image
+                    width={16}
+                    height={16}
+                    src={item.srcIcon}
+                    alt={"pulse"}
+                  />
+                  <Typography variant="body1" color="text.primary">
+                    {item.text}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
 
-          <Box display='flex' justifyContent={'flex-end'} marginBottom={'4px'}>
-            <LinkTo href='/id-do-character'>
+            <Box
+              display="flex"
+              justifyContent={"flex-end"}
+              marginBottom={"4px"}
+            >
               <Typography
-                variant='body2'
-                color='text.primary'
-                marginTop={'30px'}
-                marginRight={'4px'}
+                variant="body2"
+                color="text.primary"
+                marginTop={"30px"}
+                marginRight={"4px"}
               >
                 Saiba Mais
               </Typography>
-            </LinkTo>
+            </Box>
           </Box>
-        </Box>
-      </Card>
+        </Card>
+      </LinkTo>
     </>
-  )
+  );
 }
