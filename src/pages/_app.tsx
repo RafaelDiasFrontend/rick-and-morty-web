@@ -58,12 +58,13 @@ export default function App({ Component, pageProps }: AppProps) {
           primary: {
             main: '#11B0C8',
           },
+
           mode,
           ...(mode === 'light'
             ? {
                 background: {
                   default: '#fff',
-                  paper: '#F1F1F1;',
+                  paper: '#F1F1F1',
                 },
                 text: {
                   primary: '#313234',
