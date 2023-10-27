@@ -56,12 +56,11 @@ export default function App({ Component, pageProps }: AppProps) {
       createTheme({
         palette: {
           primary: {
-            main: '#11B0C8', // Substitua pela cor primária desejada
+            main: '#11B0C8',
           },
-          mode, // Isso definirá o modo de acordo com a variável mode
+          mode,
           ...(mode === 'light'
             ? {
-                // Configurações de cores para o modo claro
                 background: {
                   default: '#fff',
                 },
@@ -70,7 +69,6 @@ export default function App({ Component, pageProps }: AppProps) {
                 },
               }
             : {
-                // Configurações de cores para o modo escuro
                 background: {
                   default: '#000000',
                 },
