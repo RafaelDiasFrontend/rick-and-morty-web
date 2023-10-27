@@ -41,7 +41,9 @@ export default function FilterCharacter(): CharacterType {
           display={'flex'}
           width={'100%'}
           justifyContent={'space-between'}
-          gap={15}
+          columnGap={15}
+          gap={2}
+          flexWrap={'wrap'}
         >
           <FormControl sx={{ m: 1, width: '300px' }} variant='outlined'>
             <OutlinedInput
@@ -66,6 +68,7 @@ export default function FilterCharacter(): CharacterType {
               key='index'
               variant='body1'
               color={theme.palette.text.primary}
+              whiteSpace={'nowrap'}
             >
               Filtrar por:
             </Typography>
