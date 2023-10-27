@@ -1,42 +1,48 @@
-import { ThemeBtn } from "@/pages/_app";
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import { ThemeBtn } from '@/pages/_app'
+import { DarkMode } from '@mui/icons-material'
+import { Box, Button, Container, Typography, useTheme } from '@mui/material'
 
 export default function Hero() {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
-    <Box bgcolor="background.default">
-      <Container sx={{ minHeight: "40vh" }}>
+    <Box bgcolor='background.default'>
+      <Container sx={{ height: '580px' }}>
         <Box
-          display={["flex"]}
-          flexDirection={["column", "column", "row"]}
-          gap={[2, 2, 3, 4]}
-          px={"24px"}
+          display={['flex']}
+          flexDirection={['column', 'column', 'row']}
+          px={'24px'}
           pt={8}
           pb={[0, 0, 1, 2]}
-          height="100%"
+          height='100%'
         >
           <Box
-            display={"flex"}
-            flexDirection={["column", "column"]}
-            justifyContent={"center"}
-            gap={[2, 2, 3, 4]}
-            width={["100%", "100%", "50%", "40%"]}
+            display={'flex'}
+            flexDirection={['column', 'column']}
+            width={['100%', '100%', '50%', '40%']}
+            justifyContent={'center'}
           >
             <Typography
-              color="text.primary"
-              fontSize={["30px", "40px", "48px"]}
-              fontWeight={"bold"}
-              variant="h1"
+              marginTop={'34px'}
+              color='text.primary'
+              fontSize={['2.4rem', '40px', '48px']}
+              fontWeight={'bold'}
+              variant='h1'
+              maxWidth={'21rem'}
+              marginBottom={'24px'}
             >
-              Saiba tudo em um só lugar.
+              Saiba tudo em um só
+              <span style={{ color: '#11B0C8' }}> lugar.</span>
             </Typography>
 
             <Typography
-              color="text.primary"
-              fontSize={["14px", "15px", "16px"]}
-              fontWeight={"bold"}
-              variant="h1"
+              color='text.primary'
+              fontSize={['0.85rem', '1rem']}
+              maxWidth={['17rem', '33rem']}
+              lineHeight={1.4}
+              fontWeight={'regular'}
+              variant='h1'
+              marginBottom={'54px'}
             >
               Personagens, localizações, episódios e muito mais.
             </Typography>
@@ -46,39 +52,21 @@ export default function Hero() {
 
           <Box
             sx={{
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
               backgroundImage: `url(${
-                theme.palette.mode === "dark"
-                  ? "/homeimages/heroImage.png"
-                  : "/homeimages/herolightimage.png"
+                theme.palette.mode === 'dark'
+                  ? '/homeimages/heroImage.png'
+                  : '/homeimages/herolightimage.png'
               })`,
             }}
-            ml="auto"
-            width={["100%", "100%", "50%", "50%"]}
-            minHeight={"30vh"}
-          >
-            {/*<Image
-              width={300}
-              height={300}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: "bottom",
-                maxHeight: "400px",
-              }}
-              alt="heroimage"
-              src={
-                theme.palette.mode === "dark"
-                  ? "/homeimages/heroImage.png"
-                  : "/homeimages/herolightimage.png"
-              }
-            />*/}
-          </Box>
+            height='436px'
+            ml='auto'
+            width={['100%', '100%', '50%', '50%']}
+          ></Box>
         </Box>
       </Container>
     </Box>
-  );
+  )
 }
