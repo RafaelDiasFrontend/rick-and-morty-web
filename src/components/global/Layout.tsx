@@ -31,10 +31,11 @@ export default function Layout({
       {showNav && <NavBarDefault />}
       <Box
         sx={{
-          gap: 4,
+          gap: 5,
           display: "flex",
           flexDirection: "column",
           backgroundColor: "background.default",
+          pb: 10,
         }}
       >
         {children}

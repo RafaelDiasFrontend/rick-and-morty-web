@@ -6,6 +6,10 @@ import Hero from "@/components/homepage/Hero";
 import { fetchAll } from "@/lib/services/getAllService";
 import CharacterType from "@/lib/types/CharacterType";
 import { Box, Container, Typography, useTheme } from "@mui/material";
+import EpisodesList from "@/components/homepage/EpisodesList";
+import EpisodeType from "@/lib/types/EpisodeType";
+import LocationType from "@/lib/types/LocationType";
+import LocationsList from "@/components/homepage/LocationsList";
 
 interface HomePageProps {
   data: {
@@ -13,10 +17,10 @@ interface HomePageProps {
       results: CharacterType[];
     };
     episodes: {
-      results: CharacterType[];
+      results: EpisodeType[];
     };
     locations: {
-      results: CharacterType[];
+      results: LocationType[];
     };
   };
 }
@@ -27,7 +31,8 @@ export default function ApolloClient({ data }: HomePageProps) {
       <Hero />
       {/*<FilterCharacter />*/}
       <CharactersList characters={data.characters.results} />
-
+      <EpisodesList episodes={data.episodes.results} />
+      <LocationsList locations={data.locations.results} />
       {/*<List characters={data.characters.results} linkPrefix="/characters" />
       <List characters={data.episodes.results} linkPrefix="/episodes" />
       <List characters={data.locations.results} linkPrefix="/locations" />*/}

@@ -36,7 +36,7 @@ export default function CharactersCard({ character }: CharactersCardProps) {
   ];
   return (
     <>
-      <LinkTo href={`/character/${id}`}>
+      <LinkTo href={`/characters/${id}`}>
         <Card
           sx={{
             maxWidth: 345,
@@ -84,20 +84,15 @@ export default function CharactersCard({ character }: CharactersCardProps) {
               ))}
             </Box>
 
-            <Box
-              display="flex"
-              justifyContent={"flex-end"}
-              marginBottom={"4px"}
+            <Typography
+              sx={{ float: "right" }}
+              variant="body2"
+              color="text.primary"
+              marginTop={"30px"}
+              marginRight={"4px"}
             >
-              <Typography
-                variant="body2"
-                color="text.primary"
-                marginTop={"30px"}
-                marginRight={"4px"}
-              >
-                Saiba Mais
-              </Typography>
-            </Box>
+              Saiba Mais
+            </Typography>
           </Box>
         </Card>
       </LinkTo>

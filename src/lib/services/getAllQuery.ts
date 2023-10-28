@@ -13,12 +13,14 @@ export const GET_ALL = gql`
       results {
         id
         name
+        type
       }
     }
     episodes(page: $page, filter: { name: $name }) {
       results {
         id
         name
+        episode
       }
     }
   }
