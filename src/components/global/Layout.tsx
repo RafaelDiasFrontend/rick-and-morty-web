@@ -36,7 +36,7 @@ export default function Layout({
           display: "flex",
           flexDirection: "column",
           backgroundColor: "background.default",
-          pb: 10,
+          pb: 5,
         }}
       >
         {children}

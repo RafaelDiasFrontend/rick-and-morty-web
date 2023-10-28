@@ -33,10 +33,20 @@ export default function FooterDefault() {
             </IconButton>
           </Box>
         </Box>
-        <Divider sx={{ mt: 10, mb: 4, backgroundColor: "primary.main" }} />
+        <Divider
+          sx={{
+            mt: [3, 3, 5, 10],
+            mb: [2, 3, 4, 5],
+            backgroundColor: "primary.main",
+          }}
+        />
 
-        <Box display={"flex"} justifyContent={"space-between"}>
-          <Typography variant="subtitle1">
+        <Box
+          display={["block", "block", "flex"]}
+          textAlign={["center", "center", "start"]}
+          justifyContent={"space-between"}
+        >
+          <Typography variant="subtitle1" fontWeight={"bold"}>
             &copy;{new Date().getFullYear()}
           </Typography>
           <Typography variant="subtitle1">

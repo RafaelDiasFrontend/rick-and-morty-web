@@ -33,7 +33,7 @@ export default function LocationsList({ locations }: LocationsListProps) {
         </Box>
         <Grid container spacing={2}>
           {locations?.map((location, index) => (
-            <Grid key={index} item xs={3} md={2}>
+            <Grid key={index} item xs={6} md={4} lg={3}>
               <Box
                 borderRadius="10px"
                 p={1}
