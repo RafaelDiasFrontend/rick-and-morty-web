@@ -1,12 +1,21 @@
 import LocationType from "@/lib/types/LocationType";
 import CategoryIcon from "@mui/icons-material/Category";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 interface LocationsListProps {
   locations?: LocationType[];
 }
 
 export default function LocationsList({ locations }: LocationsListProps) {
+  const theme = useTheme();
+
   return (
     <Container>
       <Box display={"flex"} flexDirection={"column"} gap={3} px={"20px"}>
@@ -27,15 +36,28 @@ export default function LocationsList({ locations }: LocationsListProps) {
             <Grid key={index} item xs={3} md={2}>
               <Box
                 borderRadius="10px"
-                p={2}
+                p={1}
                 bgcolor="background.paper"
                 display={"flex"}
                 flexDirection={"column"}
-                alignContent={"center"}
+                justifyContent={"center"}
                 alignItems={"center"}
                 textAlign={"center"}
+                minHeight={"10rem"}
+                maxHeight={"10rem"}
+                position={"relative"}
               >
                 <Image
+                  style={{
+                    position: "absolute",
+                    top: -25,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    filter:
+                      theme.palette.mode === "dark"
+                        ? "invert(100%)"
+                        : "invert(0%)",
+                  }}
                   height={50}
                   width={50}
                   src="/homeimages/iconPlanet.png"
@@ -44,7 +66,12 @@ export default function LocationsList({ locations }: LocationsListProps) {
                 <Typography variant="subtitle2" color="text.primary">
                   {location.type}
                 </Typography>
-                <Typography variant="subtitle1" color="primary.main">
+                <Typography
+                  lineHeight={1.2}
+                  variant="subtitle1"
+                  color="primary.main"
+                  mb={2}
+                >
                   {location.name}
                 </Typography>
                 <Button

@@ -47,8 +47,8 @@ export default function App({ Component, pageProps }: AppProps) {
               }
             : {
                 background: {
-                  default: "#01090b",
-                  paper: "#252222",
+                  default: "#021217",
+                  paper: "#000000",
                 },
                 text: {
                   primary: "#fff",
