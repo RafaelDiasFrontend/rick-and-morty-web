@@ -1,6 +1,6 @@
-import CharactersCard from "@/components/characters/CharactersCard";
-import CharactersList from "@/components/characters/CharactersList";
-import FilterCharacter from "@/components/characters/FilterCharacters";
+import CharactersCard from "@/components/homepage/CharactersCard";
+import CharactersList from "@/components/homepage/CharactersList";
+import FilterCharacter from "@/components/homepage/FilterCharacters";
 import Layout from "@/components/global/Layout";
 import Hero from "@/components/homepage/Hero";
 import { fetchAll } from "@/lib/services/getAllService";
