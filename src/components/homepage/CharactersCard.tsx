@@ -43,7 +43,6 @@ export default function CharactersCard({ character }: CharactersCardProps) {
             padding: 2,
             borderRadius: "10px",
           }}
-          elevation={2}
           color="default"
         >
           <CardMedia

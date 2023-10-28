@@ -31,6 +31,7 @@ export default function Layout({
       {showNav && <NavBarDefault />}
       <Box
         sx={{
+          color: "text.primary",
           gap: 5,
           display: "flex",
           flexDirection: "column",
@@ -39,8 +40,8 @@ export default function Layout({
         }}
       >
         {children}
+        {showFooter && <FooterDefault />}
       </Box>
-      {/*{showFooter && <FooterDefault />}*/}
     </>
   );
 }

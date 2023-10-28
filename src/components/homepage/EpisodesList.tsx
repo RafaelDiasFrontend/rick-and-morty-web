@@ -34,10 +34,11 @@ export default function EpisodesList({ episodes }: EpisodesListProps) {
 }
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import Link from "next/link";
+import LinkTo from "../global/LinkTo";
 function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {
   const { id, episode } = episodeData;
   return (
-    <Link href={`/episodes/${id}`}>
+    <LinkTo href={`/episodes/${id}`}>
       <Box
         p={2}
         borderRadius={"10px"}
@@ -57,7 +58,7 @@ function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {
           sx={{
             borderRadius: "10px",
             color: "white",
-            width: "60%",
+            width: ["80%", "80%", "70%", "60%"],
             ml: "auto",
           }}
           variant="contained"
@@ -65,6 +66,6 @@ function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {
           Saiba mais
         </Button>
       </Box>
-    </Link>
+    </LinkTo>
   );
 }
