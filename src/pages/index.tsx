@@ -5,7 +5,7 @@ import Layout from "@/components/global/Layout";
 import Hero from "@/components/homepage/Hero";
 import { fetchAll } from "@/lib/services/getAllService";
 import CharacterType from "@/lib/types/CharacterType";
-import { Box, Container, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
 interface HomePageProps {
   data: {
@@ -22,19 +22,11 @@ interface HomePageProps {
 }
 
 export default function ApolloClient({ data }: HomePageProps) {
-  const theme = useTheme();
   return (
     <Layout>
       <Hero />
-      <Box
-        sx={{
-          width: "100%",
-          backgroundColor: theme.palette.mode === "dark" ? "#1E1E20;" : "#fff",
-        }}
-      >
-        <FilterCharacter />
-        <CharactersList characters={data.characters.results} />
-      </Box>
+      {/*<FilterCharacter />*/}
+      <CharactersList characters={data.characters.results} />
 
       {/*<List characters={data.characters.results} linkPrefix="/characters" />
       <List characters={data.episodes.results} linkPrefix="/episodes" />

@@ -41,9 +41,9 @@ export default function CharactersCard({ character }: CharactersCardProps) {
           sx={{
             maxWidth: 345,
             padding: 2,
-            borderRadius: "30px",
+            borderRadius: "10px",
           }}
-          elevation={4}
+          elevation={2}
           color="default"
         >
           <CardMedia

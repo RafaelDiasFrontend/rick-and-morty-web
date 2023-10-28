@@ -45,6 +45,7 @@ export default function FilterCharacter() {
           gap={2}
           flexWrap={"wrap"}
           mb={8}
+          px="20px"
         >
           <FormControl sx={{ width: "300px" }} variant="outlined">
             <OutlinedInput

@@ -6,15 +6,13 @@ export default function Hero() {
   const theme = useTheme();
 
   return (
-    <Box bgcolor="background.default">
-      <Container sx={{ height: "580px" }}>
+    <Box bgcolor="background.paper">
+      <Container sx={{ height: ["55vh", "55vh", "50vh", "45vh"] }}>
         <Box
           display={["flex"]}
           flexDirection={["column", "column", "row"]}
-          px={"24px"}
-          pt={8}
-          pb={[0, 0, 1, 2]}
           height="100%"
+          px="20px"
         >
           <Box
             display={"flex"}
@@ -61,9 +59,9 @@ export default function Hero() {
                   : "/homeimages/herolightimage.png"
               })`,
             }}
-            height="436px"
-            ml="auto"
-            width={["100%", "100%", "50%", "50%"]}
+            height="400px"
+            m="auto"
+            width={["100%", "100%", "60%", "60%"]}
           ></Box>
         </Box>
       </Container>

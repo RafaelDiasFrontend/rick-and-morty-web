@@ -2,7 +2,7 @@ import Head from "next/head";
 import { ReactNode } from "react";
 import NavBarDefault from "./layout/NavBarDefault";
 import FooterDefault from "./layout/FooterDefault";
-import { Box, Container } from "@mui/material";
+import { Box, Container, useTheme } from "@mui/material";
 
 interface LayoutProps {
   showNav?: Boolean;
@@ -20,6 +20,8 @@ export default function Layout({
   children,
 }: LayoutProps) {
   const mainTitle = `Rick e morty | ${title}`;
+  const theme = useTheme();
+
   return (
     <>
       <Head>
@@ -27,7 +29,16 @@ export default function Layout({
         <meta name="description" content={String(description)} key="desc" />
       </Head>
       {showNav && <NavBarDefault />}
-      <main>{children}</main>
+      <Box
+        sx={{
+          gap: 4,
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "background.default",
+        }}
+      >
+        {children}
+      </Box>
       {/*{showFooter && <FooterDefault />}*/}
     </>
   );
