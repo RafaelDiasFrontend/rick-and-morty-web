@@ -6,7 +6,7 @@ export default function Hero() {
 
   return (
     <Box bgcolor='background.default'>
-      <Container sx={{ height: ['75vh', '50vh', '50vh', '51vh'] }}>
+      <Container sx={{ height: '580px' }}>
         <Box
           display={['flex']}
           flexDirection={['column', 'column', 'row']}
