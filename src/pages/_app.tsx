@@ -1,66 +1,66 @@
-import client from "@/lib/apolloClient";
-import "@/styles/globals.css";
-import { ApolloProvider } from "@apollo/client";
+import client from '@/lib/apolloClient'
+import '@/styles/globals.css'
+import { ApolloProvider } from '@apollo/client'
 import {
   DarkMode,
   DarkModeOutlined,
   LightMode,
   LightModeOutlined,
-} from "@mui/icons-material";
+} from '@mui/icons-material'
 
-import { Box, Button, CssBaseline, PaletteMode, useTheme } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import type { AppProps } from "next/app";
-import * as React from "react";
+import { Box, Button, CssBaseline, PaletteMode, useTheme } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import type { AppProps } from 'next/app'
+import * as React from 'react'
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light')
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
       },
     }),
-    []
-  );
+    [],
+  )
 
   const theme = React.useMemo(
     () =>
       createTheme({
         palette: {
           primary: {
-            main: "#11B0C8",
+            main: '#11B0C8',
           },
 
           mode,
-          ...(mode === "light"
+          ...(mode === 'light'
             ? {
                 background: {
-                  default: "#f4f4f4",
-                  paper: "#ffffff",
+                  default: '#ffffff',
+                  paper: '#ffffff',
                 },
                 text: {
-                  primary: "#313234",
+                  primary: '#313234',
                 },
               }
             : {
                 background: {
-                  default: "#021217",
-                  paper: "#000000",
+                  default: '#000000;',
+                  paper: '#000',
                 },
                 text: {
-                  primary: "#fff",
+                  primary: '#fff',
                 },
               }),
         },
         typography: {
-          fontFamily: ["Inter", "Roboto", "sans-serif"].join(","),
+          fontFamily: ['Inter', 'Roboto', 'sans-serif'].join(','),
         },
       }),
-    [mode]
-  );
+    [mode],
+  )
 
   return (
     <ApolloProvider client={client}>
@@ -71,60 +71,60 @@ export default function App({ Component, pageProps }: AppProps) {
         </ThemeProvider>
       </ColorModeContext.Provider>
     </ApolloProvider>
-  );
+  )
 }
 
 export function ThemeBtn() {
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
+  const theme = useTheme()
+  const colorMode = React.useContext(ColorModeContext)
 
   const modeOptions = [
     {
-      mode: "dark",
-      label: "Escuro",
+      mode: 'dark',
+      label: 'Escuro',
       icon: <DarkMode />,
       outlinedIcon: <DarkModeOutlined />,
     },
     {
-      mode: "light",
-      label: "Claro",
+      mode: 'light',
+      label: 'Claro',
       icon: <LightMode />,
       outlinedIcon: <LightModeOutlined />,
     },
-  ];
+  ]
 
-  const selectedMode = theme.palette.mode;
+  const selectedMode = theme.palette.mode
 
   return (
-    <Box display={"flex"} gap={1}>
+    <Box display={'flex'} gap={1}>
       {modeOptions.map((option) => (
         <Button
           key={option.mode}
           sx={{
             borderRadius: 5,
-            textTransform: "initial",
+            textTransform: 'initial',
             color:
               selectedMode === option.mode
-                ? "white"
+                ? 'white'
                 : theme.palette.text.primary,
             backgroundColor:
               selectedMode === option.mode
                 ? theme.palette.primary.main
-                : "transparent",
-            "&:hover": {
+                : 'transparent',
+            '&:hover': {
               backgroundColor:
                 selectedMode === option.mode
                   ? theme.palette.primary.dark
-                  : "transparent",
+                  : 'transparent',
             },
           }}
-          variant={selectedMode === option.mode ? "contained" : "text"}
+          variant={selectedMode === option.mode ? 'contained' : 'text'}
           startIcon={
             selectedMode === option.mode ? option.icon : option.outlinedIcon
           }
           onClick={() => {
             if (selectedMode !== option.mode) {
-              colorMode.toggleColorMode();
+              colorMode.toggleColorMode()
             }
           }}
         >
@@ -132,5 +132,5 @@ export function ThemeBtn() {
         </Button>
       ))}
     </Box>
-  );
+  )
 }

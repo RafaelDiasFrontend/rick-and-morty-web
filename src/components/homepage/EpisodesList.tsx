@@ -1,22 +1,35 @@
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import CategoryIcon from "@mui/icons-material/Category";
-import EpisodeType from "@/lib/types/EpisodeType";
+import themeValue, { truncateName } from '@/lib/hooks'
+import EpisodeType from '@/lib/types/EpisodeType'
+import { GridViewOutlined } from '@mui/icons-material'
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo'
+import { Box, Button, Container, Grid, Typography } from '@mui/material'
+import LinkTo from '../global/LinkTo'
 interface EpisodesListProps {
-  episodes?: EpisodeType[];
+  episodes?: EpisodeType[]
 }
 
 export default function EpisodesList({ episodes }: EpisodesListProps) {
   return (
     <Container>
-      <Box display={"flex"} flexDirection={"column"} gap={3} px={"20px"}>
-        <Box alignItems="center" display={"flex"} gap={2}>
-          <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
-            Episódeos
+      <Box
+        display={'flex'}
+        flexDirection={'column'}
+        gap={3}
+        px={'20px'}
+        marginTop={'40px'}
+      >
+        <Box alignItems='center' display={'flex'} gap={2}>
+          <Typography color='text.primary' variant='h5' fontWeight={'bold'}>
+            Episódios
           </Typography>
           <Button
-            startIcon={<CategoryIcon />}
-            sx={{ borderRadius: "150px", color: "white" }}
-            variant="contained"
+            startIcon={<GridViewOutlined />}
+            sx={{
+              borderRadius: '150px',
+              color: 'white',
+              textTransform: 'initial',
+            }}
+            variant='contained'
           >
             Ver todos
           </Button>
@@ -30,43 +43,39 @@ export default function EpisodesList({ episodes }: EpisodesListProps) {
         </Grid>
       </Box>
     </Container>
-  );
+  )
 }
-import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
-import Link from "next/link";
-import LinkTo from "../global/LinkTo";
 function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {
-  const { id, episode } = episodeData;
+  console.log('episodios', episodeData)
+  const { id, name, episode } = episodeData
   return (
     <LinkTo href={`/episodes/${id}`}>
       <Box
         p={2}
-        borderRadius={"10px"}
-        display={"flex"}
-        flexDirection={"column"}
-        justifyContent={"center"}
-        minHeight={"5rem"}
-        bgcolor="background.paper"
+        borderRadius={'10px'}
+        display={'flex'}
+        flexDirection={'column'}
+        justifyContent={'center'}
+        minHeight={'5rem'}
+        bgcolor={themeValue('#F9F9F9', '#313234')}
         gap={1}
-        color="text.primary"
+        color='text.primary'
+        sx={{
+          transition: 'ease-in-out 0.2s',
+
+          '&:hover': {
+            boxShadow: '0 0 8px #11b0c856',
+          },
+        }}
       >
-        <Box display={"flex"} gap={1}>
+        <Box display={'flex'} gap={1}>
           <OndemandVideoIcon />
-          <Typography variant="subtitle2">{episode}</Typography>
+          <Typography variant='body1'>{episode}</Typography>
         </Box>
-        <Button
-          sx={{
-            borderRadius: "10px",
-            color: "white",
-            width: ["80%", "80%", "70%", "60%"],
-            ml: "auto",
-          }}
-          variant="contained"
-          size="small"
-        >
-          Saiba mais
-        </Button>
+        <Box display={'flex'} gap={1}>
+          <Typography variant='body2'>{truncateName(String(name))}</Typography>
+        </Box>
       </Box>
     </LinkTo>
-  );
+  )
 }
