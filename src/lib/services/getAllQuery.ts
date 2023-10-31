@@ -7,6 +7,8 @@ export const GET_ALL = gql`
         id
         name
         image
+        status
+        species
       }
     }
     locations(page: $page, filter: { name: $name }) {

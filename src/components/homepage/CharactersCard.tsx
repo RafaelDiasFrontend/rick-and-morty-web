@@ -1,39 +1,36 @@
 import CharacterType from "@/lib/types/CharacterType";
-import { Box, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import LinkTo from "../global/LinkTo";
 import Link from "next/link";
+import themeValue from "@/lib/themeValue";
 
 interface CharactersCardProps {
   character: CharacterType;
 }
 
 export default function CharactersCard({ character }: CharactersCardProps) {
-  const { id, name, image } = character;
+  console.log(character);
+  const { id, name, image, status, species } = character;
   const theme = useTheme();
   const cardContentItems = [
     {
-      text: "Vivo",
+      text: status,
       srcIcon: "/svgs/pulse.svg",
     },
     {
-      text: "Humano",
-      srcIcon:
-        theme.palette.mode === "dark"
-          ? "/svgs/alien.svg"
-          : "/svgs/alienLight.svg",
+      text: species,
+      srcIcon: "/svgs/alienLight.svg",
     },
     {
       text: "Earth (C-137)",
-      srcIcon:
-        theme.palette.mode === "dark"
-          ? "/svgs/planet.svg"
-          : "/svgs/planetLight.svg",
+      srcIcon: "/svgs/planetLight.svg",
     },
   ];
+
   return (
     <>
       <LinkTo href={`/characters/${id}`}>
@@ -75,6 +72,9 @@ export default function CharactersCard({ character }: CharactersCardProps) {
                     height={16}
                     src={item.srcIcon}
                     alt={"pulse"}
+                    style={{
+                      filter: themeValue("invert(0%)", "invert(100%)"),
+                    }}
                   />
                   <Typography variant="body1" color="text.primary">
                     {item.text}
@@ -83,15 +83,18 @@ export default function CharactersCard({ character }: CharactersCardProps) {
               ))}
             </Box>
 
-            <Typography
-              sx={{ float: "right" }}
-              variant="body2"
-              color="text.primary"
-              marginTop={"30px"}
-              marginRight={"4px"}
+            <Button
+              sx={{
+                mt: 2,
+                borderRadius: "10px",
+                color: "white",
+                float: "right",
+              }}
+              size="small"
+              variant="contained"
             >
-              Saiba Mais
-            </Typography>
+              Saiba mais
+            </Button>
           </Box>
         </Card>
       </LinkTo>

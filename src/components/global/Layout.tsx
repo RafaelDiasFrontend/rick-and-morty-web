@@ -38,6 +38,7 @@ export default function Layout({
           backgroundColor: "background.default",
           pb: 5,
         }}
+        minHeight={"100vh"}
       >
         {children}
         {showFooter && <FooterDefault />}

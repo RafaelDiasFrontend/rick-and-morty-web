@@ -62,6 +62,7 @@ function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {
             ml: "auto",
           }}
           variant="contained"
+          size="small"
         >
           Saiba mais
         </Button>

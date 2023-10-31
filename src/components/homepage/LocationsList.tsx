@@ -80,6 +80,7 @@ export default function LocationsList({ locations }: LocationsListProps) {
                     color: "white",
                   }}
                   variant="contained"
+                  size="small"
                 >
                   Saiba mais
                 </Button>

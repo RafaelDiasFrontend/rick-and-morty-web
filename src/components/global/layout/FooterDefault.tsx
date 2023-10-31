@@ -1,9 +1,33 @@
 import { Box, Container, Divider, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LinkTo from "../LinkTo";
 import NorthIcon from "@mui/icons-material/North";
 import Link from "next/link";
 export default function FooterDefault() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <Container sx={{ bgcolor: "background.default" }}>
@@ -22,10 +46,11 @@ export default function FooterDefault() {
           </Box>
 
           <Box
-            display={"flex"}
+            display={isVisible ? "flex" : "hidden"}
             gap={1}
             alignItems={"center"}
             justifyContent={"center"}
+            onClick={scrollToTop}
           >
             <Typography variant="subtitle2">Voltar ao topo</Typography>
             <IconButton color="primary" sx={{ border: "2px solid black" }}>
@@ -45,6 +70,7 @@ export default function FooterDefault() {
           display={["block", "block", "flex"]}
           textAlign={["center", "center", "start"]}
           justifyContent={"space-between"}
+          px={"20px"}
         >
           <Typography variant="subtitle1" fontWeight={"bold"}>
             &copy;{new Date().getFullYear()}
