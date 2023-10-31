@@ -8,7 +8,6 @@ interface CharactersListProps {
 }
 
 export default function CharactersList({ characters }: CharactersListProps) {
-  const charactersToRender = characters.slice(0, -2)
   return (
     <Container>
       <Box display={'flex'} flexDirection={'column'} gap={3} px={'20px'}>
@@ -29,7 +28,7 @@ export default function CharactersList({ characters }: CharactersListProps) {
           </Button>
         </Box>
         <Grid container spacing={2} sx={{ marginY: '8px' }}>
-          {charactersToRender.map((character, index) => (
+          {characters.map((character, index) => (
             <Grid item xs={6} sm={4} md={3} lg={2} columns={5}>
               <CharactersCard character={character} key={index} />
             </Grid>
