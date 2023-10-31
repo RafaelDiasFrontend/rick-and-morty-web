@@ -36,7 +36,7 @@ export default function EpisodesList({ episodes }: EpisodesListProps) {
         </Box>
         <Grid container spacing={2}>
           {episodes?.map((episode, index) => (
-            <Grid item xs={6} md={3}>
+            <Grid item xs={6} sm={3} md={3}>
               <EpisodesCard episodeData={episode} key={index} />
             </Grid>
           ))}

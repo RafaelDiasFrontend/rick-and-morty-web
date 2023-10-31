@@ -1,6 +1,9 @@
-import * as React from 'react'
+import themeValue from '@/lib/hooks'
+import MenuIcon from '@mui/icons-material/Menu'
+import { Container, useTheme } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
@@ -8,19 +11,12 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import MenuIcon from '@mui/icons-material/Menu'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+import * as React from 'react'
 import LinkTo from '../LinkTo'
-import { Container, useTheme } from '@mui/material'
-import themeValue from '@/lib/hooks'
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window?: () => Window
 }
 
@@ -44,9 +40,6 @@ export default function NavBarDefault(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left' }}>
-      <Typography variant='h6' sx={{ my: 2, ml: 2 }}>
-        Logo
-      </Typography>
       <Divider />
       <List>
         {navItems.map((item, index) => (
@@ -91,7 +84,12 @@ export default function NavBarDefault(props: Props) {
                 mr: 'auto',
               }}
             >
-              <img src='/svgs/ricky.svg' alt='ricky and morty' />
+              <img
+                src='/svgs/ricky.svg'
+                width={'148px'}
+                height={'auto'}
+                alt='ricky and morty'
+              />
             </Typography>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {navItems.map((item, index) => (
@@ -101,7 +99,6 @@ export default function NavBarDefault(props: Props) {
                     sx={{
                       color: 'text.primary',
                       textTransform: 'initial',
-                      fontWeight: 'bold',
                     }}
                   >
                     {item.name}
