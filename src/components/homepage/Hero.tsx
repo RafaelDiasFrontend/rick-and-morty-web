@@ -1,13 +1,12 @@
 import { ThemeBtn } from '@/pages/_app'
-import { DarkMode } from '@mui/icons-material'
-import { Box, Button, Container, Typography, useTheme } from '@mui/material'
+import { Box, Container, Typography, useTheme } from '@mui/material'
 
 export default function Hero() {
   const theme = useTheme()
 
   return (
     <Box bgcolor='background.default'>
-      <Container sx={{ height: ['55vh', '55vh', '50vh', '45vh'] }}>
+      <Container sx={{ height: ['75vh', '50vh', '50vh', '51vh'] }}>
         <Box
           display={['flex']}
           flexDirection={['column', 'column', 'row']}
@@ -61,6 +60,7 @@ export default function Hero() {
             }}
             height='400px'
             m='auto'
+            marginTop={['8px', '0']}
             width={['100%', '100%', '60%', '60%']}
           ></Box>
         </Box>

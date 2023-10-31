@@ -29,7 +29,7 @@ export default function CharactersList({ characters }: CharactersListProps) {
         </Box>
         <Grid container spacing={2} sx={{ marginY: '8px' }}>
           {characters.map((character, index) => (
-            <Grid item xs={6} sm={4} md={3} lg={2} columns={5}>
+            <Grid item xs={6} sm={3} md={3} lg={2} columns={5}>
               <CharactersCard character={character} key={index} />
             </Grid>
           ))}

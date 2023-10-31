@@ -1,6 +1,6 @@
 import themeValue, { truncateName } from '@/lib/hooks'
 import CharacterType from '@/lib/types/CharacterType'
-import { Box, Button, useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
@@ -12,7 +12,6 @@ interface CharactersCardProps {
 }
 
 export default function CharactersCard({ character }: CharactersCardProps) {
-  console.log(character)
   const { id, name, image, status, species } = character
   const theme = useTheme()
   const cardContentItems = [
@@ -34,11 +33,10 @@ export default function CharactersCard({ character }: CharactersCardProps) {
     <>
       <LinkTo href={`/characters/${id}`}>
         <Card
-          // variant='outlined'
           sx={{
             maxWidth: '200px',
             borderRadius: '16px',
-            // border: '1px solid #1111111c',
+
             transition: 'ease-in-out 0.2s',
             backgroundColor: themeValue('#F9F9F9', '#313234'),
 

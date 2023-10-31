@@ -1,9 +1,8 @@
-import { Box, Container, Divider, IconButton, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import LinkTo from '../LinkTo'
-import NorthIcon from '@mui/icons-material/North'
-import Link from 'next/link'
 import { Favorite } from '@mui/icons-material'
+import NorthIcon from '@mui/icons-material/North'
+import { Box, Container, Divider, IconButton, Typography } from '@mui/material'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 export default function FooterDefault() {
   const [isVisible, setIsVisible] = useState(false)
 
