@@ -5,9 +5,14 @@ export default function themeValue(light: string, dark: string) {
   return theme.palette.mode === 'dark' ? dark : light
 }
 
-export const truncateName = (name: string) => {
-  if (name.length > 16) {
-    return name.slice(0, 16) + ''
+export interface TruncateNameOptions {
+  name: string
+  maxLength?: number
+}
+
+export const truncateName = ({ name, maxLength = 16 }: TruncateNameOptions) => {
+  if (maxLength !== undefined && name.length > maxLength) {
+    return name.slice(0, maxLength) + ''
   }
   return name
 }

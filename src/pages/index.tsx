@@ -1,6 +1,7 @@
 import Layout from '@/components/global/Layout'
 import CharactersList from '@/components/homepage/CharactersList'
 import EpisodesList from '@/components/homepage/EpisodesList'
+import FilterCharacter from '@/components/homepage/FilterCharacters'
 import Hero from '@/components/homepage/Hero'
 import LocationsList from '@/components/homepage/LocationsList'
 import { fetchAll } from '@/lib/services/getAllService'
@@ -29,7 +30,7 @@ export default function ApolloClient({ data }: HomePageProps) {
   return (
     <Layout>
       <Hero />
-      {/*<FilterCharacter />*/}
+      <FilterCharacter />
       <CharactersList characters={charactersSlice} />
       <EpisodesList episodes={episodesSlice} />
       <LocationsList locations={locationsSlice} />
