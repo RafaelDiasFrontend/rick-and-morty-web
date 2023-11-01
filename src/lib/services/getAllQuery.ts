@@ -9,6 +9,9 @@ export const GET_ALL = gql`
         image
         status
         species
+        location {
+          name
+        }
       }
     }
     locations(page: $page, filter: { name: $name }) {

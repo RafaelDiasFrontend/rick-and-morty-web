@@ -4,7 +4,6 @@ import EpisodeType from "@/lib/types/EpisodeType";
 import { GetServerSideProps } from "next";
 
 const EpisodeDetail = ({ episode }: { episode: EpisodeType }) => {
-  console.log(episode);
   return (
     <Layout>
       <p>{episode.name}</p>

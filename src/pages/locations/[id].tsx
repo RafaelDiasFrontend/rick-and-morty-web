@@ -4,7 +4,6 @@ import LocationType from "@/lib/types/LocationType";
 import { GetServerSideProps } from "next";
 
 const LocationDetail = ({ location }: { location: LocationType }) => {
-  console.log(location);
   return (
     <Layout>
       <p>{location.name}</p>

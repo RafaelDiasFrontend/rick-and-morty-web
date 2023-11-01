@@ -6,6 +6,12 @@ export const GET_CHARACTERS = gql`
       results {
         id
         name
+        image
+        status
+        species
+        location {
+          name
+        }
       }
     }
   }
@@ -16,6 +22,16 @@ export const GET_CHARACTER_BY_ID = gql`
     character(id: $id) {
       id
       name
+      image
+      status
+      species
+      gender
+      episode {
+        name
+      }
+      location {
+        name
+      }
     }
   }
 `;
