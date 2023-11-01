@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo'
 import themeValue from '@/lib/hooks'
+import CharactersList from '@/components/homepage/CharactersList'
 
 const CharacterDetail = ({ character }: { character: CharacterType }) => {
   // const { id, name, image, status, species } = character
@@ -27,8 +28,16 @@ const CharacterDetail = ({ character }: { character: CharacterType }) => {
   console.log(character)
   return (
     <Layout>
+      {/* hero */}
       <Container>
-        <Box display={'flex'} justifyContent={'center'} marginY={'30px'}>
+        <Box display={'flex'} marginTop={'40px'} gap={'64px'}>
+          <Box
+            height={'461px'}
+            width={'369px'}
+            sx={{ background: '#11B0C8', borderRadius: '16px' }}
+          >
+            Image
+          </Box>
           <Box display={'flex-col'}>
             <Typography
               fontWeight={'bold'}
@@ -74,6 +83,19 @@ const CharacterDetail = ({ character }: { character: CharacterType }) => {
             </Box>
           </Box>
         </Box>
+        {/* Mais Personagens */}
+        <Box display={'flex'} gap={'16px'} margin={'114px 0 64px'}>
+          <img src='/svgs/charactersSmile.svg' alt='icone-de-personagens' />
+          <Typography
+            fontSize={'1.5rem'}
+            fontWeight={'bold'}
+            lineHeight={'normal'}
+          >
+            Mais <br />
+            Personagens
+          </Typography>
+        </Box>
+        {/* <CharactersList characters={characters} /> */}
       </Container>
     </Layout>
   )
