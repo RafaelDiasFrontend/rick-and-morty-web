@@ -152,7 +152,7 @@ const CharacterDetail = ({
                   alt='iconPlanet'
                 />
                 <Typography variant='subtitle2' color='text.primary'>
-                  {location?.type}
+                  {location?.name}
                 </Typography>
                 <Typography
                   lineHeight={1.2}
