@@ -1,15 +1,12 @@
-import CharactersCard from '@/components/homepage/CharactersCard'
-import CharactersList from '@/components/homepage/CharactersList'
-import FilterCharacter from '@/components/homepage/FilterCharacters'
 import Layout from '@/components/global/Layout'
+import CharactersList from '@/components/homepage/CharactersList'
+import EpisodesList from '@/components/homepage/EpisodesList'
 import Hero from '@/components/homepage/Hero'
+import LocationsList from '@/components/homepage/LocationsList'
 import { fetchAll } from '@/lib/services/getAllService'
 import CharacterType from '@/lib/types/CharacterType'
-import { Box, Container, Typography, useTheme } from '@mui/material'
-import EpisodesList from '@/components/homepage/EpisodesList'
 import EpisodeType from '@/lib/types/EpisodeType'
 import LocationType from '@/lib/types/LocationType'
-import LocationsList from '@/components/homepage/LocationsList'
 
 interface HomePageProps {
   data: {
