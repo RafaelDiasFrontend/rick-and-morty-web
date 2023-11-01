@@ -1,5 +1,4 @@
-import CharacterType from "@/lib/types/CharacterType";
-import { Search } from "@mui/icons-material";
+import { Search } from '@mui/icons-material'
 import {
   Box,
   Button,
@@ -8,69 +7,76 @@ import {
   OutlinedInput,
   Typography,
   useTheme,
-} from "@mui/material";
+} from '@mui/material'
 
-import MonitorPlayIcon from "@mui/icons-material/Monitor";
-import SmileIcon from "@mui/icons-material/Mood";
-import PlanetIcon from "@mui/icons-material/Public";
-import React from "react";
+import MonitorPlayIcon from '@mui/icons-material/Monitor'
+import SmileIcon from '@mui/icons-material/Mood'
+import PlanetIcon from '@mui/icons-material/Public'
+import React from 'react'
 
 export default function FilterCharacter() {
-  const theme = useTheme();
-  const [activeFilter, setActiveFilter] = React.useState("Personagens");
+  const theme = useTheme()
+  const [activeFilter, setActiveFilter] = React.useState('Personagens')
 
   const filterCharacterItems = [
     {
-      text: "Personagens",
+      text: 'Personagens',
       srcIcon: <SmileIcon />,
     },
     {
-      text: "Localizaçãoes",
+      text: 'Localizaçãoes',
       srcIcon: <PlanetIcon />,
     },
     {
-      text: "Episódio",
+      text: 'Episódio',
       srcIcon: <MonitorPlayIcon />,
     },
-  ];
+  ]
 
   return (
     <>
       <Container>
         <Box
-          display={"flex"}
-          width={"100%"}
-          justifyContent={"space-between"}
+          display={'flex'}
+          width={'100%'}
+          justifyContent={'space-between'}
           columnGap={15}
           gap={2}
-          flexWrap={"wrap"}
+          flexWrap={'wrap'}
           mb={8}
-          px="20px"
+          px='18px'
         >
-          <FormControl sx={{ width: "300px" }} variant="outlined">
+          <FormControl sx={{ width: '300px' }} variant='outlined'>
             <OutlinedInput
               sx={{
                 borderRadius: 10,
-                width: "25rem",
-                height: "48px",
+                width: '25rem',
+                height: '48px',
                 borderColor: theme.palette.background.default,
               }}
-              placeholder="Personagem, episódio, localização..."
-              id="outlined-adornment-weight"
+              placeholder='Personagem, episódio, localização...'
+              id='outlined-adornment-weight'
               endAdornment={<Search />}
-              aria-describedby="outlined-weight-helper-text"
+              aria-describedby='outlined-weight-helper-text'
               inputProps={{
-                "aria-label": "weight",
+                'aria-label': 'weight',
               }}
             />
           </FormControl>
 
-          <Box display={"flex"} alignItems={"center"} gap={2}>
+          <Box
+            flexWrap={'wrap'}
+            display={'flex'}
+            alignItems={'center'}
+            gap={2}
+            marginTop={['15px', '15px', '0']}
+          >
             <Typography
-              key="index"
-              variant="body1"
+              key='index'
+              variant='body1'
               color={theme.palette.text.primary}
-              whiteSpace={"nowrap"}
+              whiteSpace={'nowrap'}
+              display={['none', 'none', 'none', 'block']}
             >
               Filtrar por:
             </Typography>
@@ -81,15 +87,15 @@ export default function FilterCharacter() {
                   borderRadius: 5,
                   color:
                     activeFilter === item.text
-                      ? "white"
+                      ? 'white'
                       : theme.palette.text.primary,
                   backgroundColor:
                     activeFilter === item.text
                       ? theme.palette.primary.main
-                      : "transparent",
-                  textTransform: "initial",
+                      : 'transparent',
+                  textTransform: 'initial',
                 }}
-                variant={activeFilter === item.text ? "contained" : "text"}
+                variant={activeFilter === item.text ? 'contained' : 'text'}
                 startIcon={item.srcIcon}
                 onClick={() => setActiveFilter(item.text)}
               >
@@ -100,5 +106,5 @@ export default function FilterCharacter() {
         </Box>
       </Container>
     </>
-  );
+  )
 }
