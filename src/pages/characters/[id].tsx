@@ -37,7 +37,7 @@ const CharacterDetail = ({
       srcIcon: "/svgs/genderLess.svg",
     },
   ];
-
+  console.log(episode);
   return (
     <Layout>
       {/* hero */}
@@ -83,7 +83,7 @@ const CharacterDetail = ({
             >
               <OndemandVideoIcon fontSize={"inherit"} />
               <Typography fontSize={["1rem", "1.5rem"]}>
-                Participa de 51 episódios
+                Participa de {episode?.length} episódios
               </Typography>
             </Box>
 
