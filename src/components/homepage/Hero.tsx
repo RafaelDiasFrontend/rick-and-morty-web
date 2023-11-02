@@ -1,11 +1,12 @@
 import { ThemeBtn } from "@/pages/_app";
 import { Box, Container, Typography, useTheme } from "@mui/material";
+import FilterCharacter from "./FilterCharacters";
 
 export default function Hero() {
   const theme = useTheme();
 
   return (
-    <Box sx={{ height: "580px" }} bgcolor="background.default">
+    <Box mb={5} sx={{ height: "580px" }} bgcolor="background.default">
       <Box
         display={["flex"]}
         flexDirection={["column", "column", "row"]}
@@ -62,6 +63,7 @@ export default function Hero() {
           width={["100%", "100%", "60%", "60%"]}
         ></Box>
       </Box>
+      <FilterCharacter />
     </Box>
   );
 }
