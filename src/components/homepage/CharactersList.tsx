@@ -1,6 +1,13 @@
 import CharacterType from "@/lib/types/CharacterType";
 import { GridViewOutlined } from "@mui/icons-material";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import CharactersCard from "./CharactersCard";
 interface CharactersListProps {
   characters: CharacterType[];
@@ -36,7 +43,11 @@ export default function CharactersList({
         <Grid container spacing={2} sx={{ marginY: "8px" }}>
           {characters.map((character, index) => (
             <Grid key={index} item xs={6} sm={3} md={3} lg={2} columns={5}>
-              <CharactersCard character={character} key={index} />
+              {character ? (
+                <CharactersCard character={character} key={index} />
+              ) : (
+                <Skeleton variant="rectangular" width={"200px"} />
+              )}
             </Grid>
           ))}
         </Grid>
