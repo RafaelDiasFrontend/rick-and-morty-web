@@ -10,39 +10,31 @@ interface EpisodesListProps {
 
 export default function EpisodesList({ episodes }: EpisodesListProps) {
   return (
-    <Container>
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-        gap={3}
-        px={"20px"}
-        marginTop={"40px"}
-      >
-        <Box alignItems="center" display={"flex"} gap={2}>
-          <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
-            Episódios
-          </Typography>
-          <Button
-            startIcon={<GridViewOutlined />}
-            sx={{
-              borderRadius: "150px",
-              color: "white",
-              textTransform: "initial",
-            }}
-            variant="contained"
-          >
-            Ver todos
-          </Button>
-        </Box>
-        <Grid container spacing={2}>
-          {episodes?.map((episode, index) => (
-            <Grid key={index} item xs={6} sm={3} md={3}>
-              <EpisodesCard episodeData={episode} />
-            </Grid>
-          ))}
-        </Grid>
+    <Box display={"flex"} flexDirection={"column"} gap={5}>
+      <Box alignItems="center" display={"flex"} gap={2}>
+        <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
+          Episódios
+        </Typography>
+        <Button
+          startIcon={<GridViewOutlined />}
+          sx={{
+            borderRadius: "150px",
+            color: "white",
+            textTransform: "initial",
+          }}
+          variant="contained"
+        >
+          Ver todos
+        </Button>
       </Box>
-    </Container>
+      <Grid container spacing={2}>
+        {episodes?.map((episode, index) => (
+          <Grid key={index} item xs={6} sm={3} md={3}>
+            <EpisodesCard episodeData={episode} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
 function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {

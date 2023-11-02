@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import CharactersCard from "./CharactersCard";
+import LinkTo from "../global/LinkTo";
 interface CharactersListProps {
   characters: CharacterType[];
   showFilter?: Boolean;
@@ -19,13 +20,13 @@ export default function CharactersList({
   showFilter = true,
 }: CharactersListProps) {
   return (
-    <Container>
-      <Box display={"flex"} flexDirection={"column"} gap={3} px={"20px"}>
-        {showFilter && (
-          <Box alignItems="center" display={"flex"} gap={2}>
-            <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
-              Personagens
-            </Typography>
+    <Box display={"flex"} flexDirection={"column"} gap={5}>
+      {showFilter && (
+        <Box alignItems="center" display={"flex"} gap={2}>
+          <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
+            Personagens
+          </Typography>
+          <LinkTo href="/characters">
             <Button
               startIcon={<GridViewOutlined />}
               sx={{
@@ -37,21 +38,21 @@ export default function CharactersList({
             >
               Ver todos
             </Button>
-          </Box>
-        )}
+          </LinkTo>
+        </Box>
+      )}
 
-        <Grid container spacing={2} sx={{ marginY: "8px" }}>
-          {characters.map((character, index) => (
-            <Grid key={index} item xs={6} sm={3} md={3} lg={2} columns={5}>
-              {character ? (
-                <CharactersCard character={character} key={index} />
-              ) : (
-                <Skeleton variant="rectangular" width={"200px"} />
-              )}
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    </Container>
+      <Grid container spacing={2}>
+        {characters.map((character, index) => (
+          <Grid key={index} item xs={6} sm={3} md={3} lg={2} columns={5}>
+            {character ? (
+              <CharactersCard character={character} key={index} />
+            ) : (
+              <Skeleton variant="rectangular" width={"200px"} />
+            )}
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

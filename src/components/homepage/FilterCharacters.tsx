@@ -72,109 +72,106 @@ export default function FilterCharacter() {
 
   return (
     <>
-      <Container>
-        <Box
-          display={"flex"}
-          width={"100%"}
-          justifyContent={"space-between"}
-          columnGap={15}
-          gap={2}
-          flexWrap={"wrap"}
-          mb={8}
-          px="18px"
+      <Box
+        display={"flex"}
+        width={"100%"}
+        justifyContent={"space-between"}
+        columnGap={15}
+        gap={2}
+        flexWrap={"wrap"}
+        mb={8}
+      >
+        <FormControl
+          sx={{ width: "300px", position: "relative" }}
+          variant="outlined"
         >
-          <FormControl
-            sx={{ width: "300px", position: "relative" }}
-            variant="outlined"
-          >
-            <OutlinedInput
-              onChange={(e) => setName(e.target.value)}
-              sx={{
-                borderRadius: 10,
-                width: "25rem",
-                height: "48px",
-                borderColor: theme.palette.background.default,
-              }}
-              placeholder={`Pesquisar por ${activeFilter}`}
-              id="outlined-adornment-weight"
-              endAdornment={<Search />}
-              aria-describedby="outlined-weight-helper-text"
-              inputProps={{
-                "aria-label": "weight",
-              }}
-            />
-            {data.length > 1 && (
-              <Box
-                zIndex={999}
-                position={"absolute"}
-                top={50}
-                bgcolor={themeValue("#fafafa", "#111111")}
-                borderRadius={"16px"}
-                p={2}
-                width={"400px"}
-                border="2px solid #11111148"
-              >
-                {data
-                  ? data.map((data: any, index) => (
-                      <LinkTo
-                        key={index}
-                        href={`/${activeFilterSlug}/${data.id}`}
-                      >
-                        <Typography color="primary" variant="h6" key={index}>
-                          {data.name}
-                        </Typography>
-                      </LinkTo>
-                    ))
-                  : "Nada encontrado"}
-              </Box>
-            )}
-          </FormControl>
-
-          <Box
-            flexWrap={"wrap"}
-            display={"flex"}
-            alignItems={"center"}
-            gap={2}
-            marginTop={["15px", "15px", "0"]}
-          >
-            <Typography
-              key="index"
-              variant="body1"
-              color={theme.palette.text.primary}
-              whiteSpace={"nowrap"}
-              display={["none", "none", "none", "block"]}
+          <OutlinedInput
+            onChange={(e) => setName(e.target.value)}
+            sx={{
+              borderRadius: 10,
+              width: "25rem",
+              height: "48px",
+              borderColor: theme.palette.background.default,
+            }}
+            placeholder={`Pesquisar por ${activeFilter}`}
+            id="outlined-adornment-weight"
+            endAdornment={<Search />}
+            aria-describedby="outlined-weight-helper-text"
+            inputProps={{
+              "aria-label": "weight",
+            }}
+          />
+          {data.length > 1 && (
+            <Box
+              zIndex={999}
+              position={"absolute"}
+              top={50}
+              bgcolor={themeValue("#fafafa", "#111111")}
+              borderRadius={"16px"}
+              p={2}
+              width={"400px"}
+              border="2px solid #11111148"
             >
-              Filtrar por:
-            </Typography>
-            {filterCharacterItems.map((item, index) => (
-              <Button
-                key={index}
-                sx={{
-                  borderRadius: 5,
-                  color:
-                    activeFilter === item.text
-                      ? "white"
-                      : theme.palette.text.primary,
-                  backgroundColor:
-                    activeFilter === item.text
-                      ? theme.palette.primary.main
-                      : "transparent",
-                  textTransform: "initial",
-                }}
-                variant={activeFilter === item.text ? "contained" : "text"}
-                startIcon={item.srcIcon}
-                onClick={() => {
-                  setActiveFilter(item.text);
-                  setActiveFilterSlug(item.slug);
-                  setData([]);
-                }}
-              >
-                {item.text}
-              </Button>
-            ))}
-          </Box>
+              {data
+                ? data.map((data: any, index) => (
+                    <LinkTo
+                      key={index}
+                      href={`/${activeFilterSlug}/${data.id}`}
+                    >
+                      <Typography color="primary" variant="h6" key={index}>
+                        {data.name}
+                      </Typography>
+                    </LinkTo>
+                  ))
+                : "Nada encontrado"}
+            </Box>
+          )}
+        </FormControl>
+
+        <Box
+          flexWrap={"wrap"}
+          display={"flex"}
+          alignItems={"center"}
+          gap={2}
+          marginTop={["15px", "15px", "0"]}
+        >
+          <Typography
+            key="index"
+            variant="body1"
+            color={theme.palette.text.primary}
+            whiteSpace={"nowrap"}
+            display={["none", "none", "none", "block"]}
+          >
+            Filtrar por:
+          </Typography>
+          {filterCharacterItems.map((item, index) => (
+            <Button
+              key={index}
+              sx={{
+                borderRadius: 5,
+                color:
+                  activeFilter === item.text
+                    ? "white"
+                    : theme.palette.text.primary,
+                backgroundColor:
+                  activeFilter === item.text
+                    ? theme.palette.primary.main
+                    : "transparent",
+                textTransform: "initial",
+              }}
+              variant={activeFilter === item.text ? "contained" : "text"}
+              startIcon={item.srcIcon}
+              onClick={() => {
+                setActiveFilter(item.text);
+                setActiveFilterSlug(item.slug);
+                setData([]);
+              }}
+            >
+              {item.text}
+            </Button>
+          ))}
         </Box>
-      </Container>
+      </Box>
     </>
   );
 }
