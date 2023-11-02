@@ -165,10 +165,15 @@ const CharacterDetail = ({
           </Box>
         </Box>
         {/* Mais Personagens */}
-        <Box display={'flex'} gap={'16px'} margin={'114px 0 64px'} px='40px'>
+        <Box
+          display={'flex'}
+          gap={'16px'}
+          margin={'114px 0 64px'}
+          px={['0', '40px']}
+        >
           <img src='/svgs/charactersSmile.svg' alt='icone-de-personagens' />
           <Typography
-            fontSize={'1.5rem'}
+            fontSize={['1rem', '1.5rem']}
             fontWeight={'bold'}
             lineHeight={'normal'}
           >
