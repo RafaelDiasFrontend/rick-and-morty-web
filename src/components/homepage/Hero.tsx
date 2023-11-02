@@ -6,7 +6,11 @@ export default function Hero() {
   const theme = useTheme();
 
   return (
-    <Box mb={5} sx={{ height: "580px" }} bgcolor="background.default">
+    <Box
+      mb={5}
+      height={["500px", "600px", "350px"]}
+      bgcolor="background.default"
+    >
       <Box
         display={["flex"]}
         flexDirection={["column", "column", "row"]}

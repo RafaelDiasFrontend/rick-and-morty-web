@@ -30,7 +30,6 @@ export default function ApolloClient({ data }: HomePageProps) {
   return (
     <Layout>
       <Hero />
-
       <CharactersList characters={charactersSlice} />
       <EpisodesList episodes={episodesSlice} />
       <LocationsList locations={locationsSlice} />

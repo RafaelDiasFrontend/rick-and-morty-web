@@ -12,16 +12,16 @@ import CharactersCard from "./CharactersCard";
 import LinkTo from "../global/LinkTo";
 interface CharactersListProps {
   characters: CharacterType[];
-  showFilter?: Boolean;
+  showTitle?: Boolean;
 }
 
 export default function CharactersList({
   characters,
-  showFilter = true,
+  showTitle = true,
 }: CharactersListProps) {
   return (
     <Box display={"flex"} flexDirection={"column"} gap={5}>
-      {showFilter && (
+      {showTitle && (
         <Box alignItems="center" display={"flex"} gap={2}>
           <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
             Personagens

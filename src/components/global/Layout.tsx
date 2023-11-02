@@ -10,6 +10,7 @@ interface LayoutProps {
   children: ReactNode;
   title?: String;
   description?: String;
+  gap?: any;
 }
 
 export default function Layout({
@@ -18,6 +19,7 @@ export default function Layout({
   showNav = true,
   showFooter = true,
   children,
+  gap = "60px",
 }: LayoutProps) {
   const mainTitle = `Rick e morty | ${title}`;
 
@@ -32,8 +34,7 @@ export default function Layout({
       <Box width={"100%"} sx={{ backgroundColor: "background.paper" }}>
         <Container
           sx={{
-            px: "40px",
-            gap: "60px",
+            gap: gap,
             display: "flex",
             flexDirection: "column",
             color: "text.primary",

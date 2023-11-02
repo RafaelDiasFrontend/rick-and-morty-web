@@ -78,7 +78,6 @@ export default function FilterCharacter() {
         columnGap={15}
         gap={2}
         flexWrap={"wrap"}
-        mb={8}
       >
         <FormControl
           sx={{ width: "300px", position: "relative" }}
