@@ -118,7 +118,10 @@ export default function FilterCharacter() {
               >
                 {data
                   ? data.map((data: any, index) => (
-                      <LinkTo href={`/${activeFilterSlug}/${data.id}`}>
+                      <LinkTo
+                        key={index}
+                        href={`/${activeFilterSlug}/${data.id}`}
+                      >
                         <Typography color="primary" variant="h6" key={index}>
                           {data.name}
                         </Typography>
