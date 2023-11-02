@@ -18,39 +18,31 @@ interface LocationsListProps {
 
 export default function LocationsList({ locations }: LocationsListProps) {
   return (
-    <Container>
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-        gap={3}
-        px={"20px"}
-        marginTop={"40px"}
-      >
-        <Box alignItems="center" display={"flex"} gap={2}>
-          <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
-            Localizações
-          </Typography>
-          <Button
-            startIcon={<GridViewOutlined />}
-            sx={{
-              borderRadius: "150px",
-              color: "white",
-              textTransform: "initial",
-            }}
-            variant="contained"
-          >
-            Ver todos
-          </Button>
-        </Box>
-        <Grid container spacing={2} marginTop={4}>
-          {locations?.map((location, index) => (
-            <Grid key={index} item xs={6} sm={4} md={3} lg={2}>
-              <LocationCard locationData={location} />
-            </Grid>
-          ))}
-        </Grid>
+    <Box display={"flex"} flexDirection={"column"} gap={5}>
+      <Box alignItems="center" display={"flex"} gap={2}>
+        <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
+          Localizações
+        </Typography>
+        <Button
+          startIcon={<GridViewOutlined />}
+          sx={{
+            borderRadius: "150px",
+            color: "white",
+            textTransform: "initial",
+          }}
+          variant="contained"
+        >
+          Ver todos
+        </Button>
       </Box>
-    </Container>
+      <Grid container spacing={2}>
+        {locations?.map((location, index) => (
+          <Grid key={index} item xs={6} sm={4} md={3} lg={2}>
+            <LocationCard locationData={location} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
 

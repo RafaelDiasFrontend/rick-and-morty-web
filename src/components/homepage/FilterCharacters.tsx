@@ -72,7 +72,62 @@ export default function FilterCharacter() {
 
   return (
     <>
-      <Container>
+      <Box
+        display={"flex"}
+        width={"100%"}
+        justifyContent={"space-between"}
+        columnGap={15}
+        gap={2}
+        flexWrap={"wrap"}
+        mb={8}
+      >
+        <FormControl
+          sx={{ width: "300px", position: "relative" }}
+          variant="outlined"
+        >
+          <OutlinedInput
+            onChange={(e) => setName(e.target.value)}
+            sx={{
+              borderRadius: 10,
+              width: "25rem",
+              height: "48px",
+              borderColor: theme.palette.background.default,
+            }}
+            placeholder={`Pesquisar por ${activeFilter}`}
+            id="outlined-adornment-weight"
+            endAdornment={<Search />}
+            aria-describedby="outlined-weight-helper-text"
+            inputProps={{
+              "aria-label": "weight",
+            }}
+          />
+          {data.length > 1 && (
+            <Box
+              zIndex={999}
+              position={"absolute"}
+              top={50}
+              bgcolor={themeValue("#fafafa", "#111111")}
+              borderRadius={"16px"}
+              p={2}
+              width={"400px"}
+              border="2px solid #11111148"
+            >
+              {data
+                ? data.map((data: any, index) => (
+                    <LinkTo
+                      key={index}
+                      href={`/${activeFilterSlug}/${data.id}`}
+                    >
+                      <Typography color="primary" variant="h6" key={index}>
+                        {data.name}
+                      </Typography>
+                    </LinkTo>
+                  ))
+                : "Nada encontrado"}
+            </Box>
+          )}
+        </FormControl>
+
         <Box
           display={'flex'}
           width={'100%'}
@@ -86,9 +141,13 @@ export default function FilterCharacter() {
           <FormControl
             sx={{ width: '405px', position: 'relative' }}
             variant='outlined'
+
           >
-            <OutlinedInput
-              onChange={(e) => setName(e.target.value)}
+            Filtrar por:
+          </Typography>
+          {filterCharacterItems.map((item, index) => (
+            <Button
+              key={index}
               sx={{
                 borderRadius: 10,
                 width: '100%',
@@ -173,8 +232,9 @@ export default function FilterCharacter() {
               </Button>
             ))}
           </Box>
+
         </Box>
-      </Container>
+      </Box>
     </>
   )
 }
