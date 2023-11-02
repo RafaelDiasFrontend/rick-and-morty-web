@@ -35,6 +35,7 @@ export default function Layout({
         <Container
           sx={{
             gap: gap,
+            px: "40px",
             display: "flex",
             flexDirection: "column",
             color: "text.primary",

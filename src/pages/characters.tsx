@@ -41,6 +41,25 @@ export default function Characters({
         Personagens
       </Typography>
       <FilterCharacter />
+
+      {data ? (
+        <Box>
+          <ReactPaginate
+            previousLabel={"Voltar"}
+            nextLabel={"Próximo"}
+            breakLabel={"..."}
+            renderOnZeroPageCount={null}
+            pageCount={Math.ceil(count / pageSize)}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={3}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            forcePage={currentPage}
+          />
+        </Box>
+      ) : null}
+
       <CharactersList showTitle={false} characters={data} />
 
       {data ? (
