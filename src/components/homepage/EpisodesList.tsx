@@ -60,10 +60,10 @@ function EpisodesCard({ episodeData }: { episodeData: EpisodeType }) {
         gap={1}
         color="text.primary"
         sx={{
-          transition: "ease-in-out 0.2s",
+          transition: "ease-in 0.05s",
 
           "&:hover": {
-            boxShadow: "0 0 8px #11b0c856",
+            boxShadow: "0 0 4px #11b0c885",
           },
         }}
       >

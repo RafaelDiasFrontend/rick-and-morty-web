@@ -1,7 +1,7 @@
-import themeValue from '@/lib/hooks'
-import LocationType from '@/lib/types/LocationType'
-import { GridViewOutlined } from '@mui/icons-material'
-import CategoryIcon from '@mui/icons-material/Category'
+import themeValue from "@/lib/hooks";
+import LocationType from "@/lib/types/LocationType";
+import { GridViewOutlined } from "@mui/icons-material";
+import CategoryIcon from "@mui/icons-material/Category";
 import {
   Box,
   Button,
@@ -9,36 +9,35 @@ import {
   Grid,
   Typography,
   useTheme,
-} from '@mui/material'
-import Image from 'next/image'
+} from "@mui/material";
+import Image from "next/image";
+import LinkTo from "../global/LinkTo";
 interface LocationsListProps {
-  locations?: LocationType[]
+  locations?: LocationType[];
 }
 
 export default function LocationsList({ locations }: LocationsListProps) {
-  const theme = useTheme()
-
   return (
     <Container>
       <Box
-        display={'flex'}
-        flexDirection={'column'}
+        display={"flex"}
+        flexDirection={"column"}
         gap={3}
-        px={'20px'}
-        marginTop={'40px'}
+        px={"20px"}
+        marginTop={"40px"}
       >
-        <Box alignItems='center' display={'flex'} gap={2}>
-          <Typography color='text.primary' variant='h5' fontWeight={'bold'}>
+        <Box alignItems="center" display={"flex"} gap={2}>
+          <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
             Localizações
           </Typography>
           <Button
             startIcon={<GridViewOutlined />}
             sx={{
-              borderRadius: '150px',
-              color: 'white',
-              textTransform: 'initial',
+              borderRadius: "150px",
+              color: "white",
+              textTransform: "initial",
             }}
-            variant='contained'
+            variant="contained"
           >
             Ver todos
           </Button>
@@ -46,60 +45,58 @@ export default function LocationsList({ locations }: LocationsListProps) {
         <Grid container spacing={2} marginTop={4}>
           {locations?.map((location, index) => (
             <Grid key={index} item xs={6} sm={4} md={3} lg={2}>
-              <Box
-                borderRadius='10px'
-                p={2}
-                display={'flex'}
-                flexDirection={'column'}
-                justifyContent={'center'}
-                alignItems={'center'}
-                textAlign={'center'}
-                bgcolor={themeValue('#F9F9F9', '#313234')}
-                height={'10rem'}
-                position={'relative'}
-              >
-                <Image
-                  style={{
-                    position: 'absolute',
-                    top: -25,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'invert(100%)'
-                        : 'invert(0%)',
-                  }}
-                  height={50}
-                  width={50}
-                  src='/homeimages/iconPlanet.png'
-                  alt='iconPlanet'
-                />
-                <Typography variant='subtitle2' color='text.primary'>
-                  {location.type}
-                </Typography>
-                <Typography
-                  lineHeight={1.2}
-                  variant='subtitle1'
-                  color='primary.main'
-                  mb={2}
-                >
-                  {location.name}
-                </Typography>
-                <Button
-                  sx={{
-                    borderRadius: '10px',
-                    color: 'white',
-                  }}
-                  variant='contained'
-                  size='small'
-                >
-                  Saiba mais
-                </Button>
-              </Box>
+              <LocationCard locationData={location} />
             </Grid>
           ))}
         </Grid>
       </Box>
     </Container>
-  )
+  );
+}
+
+function LocationCard({ locationData }: { locationData: LocationType }) {
+  const { type, name, id } = locationData;
+  return (
+    <LinkTo href={`/location/${id}`}>
+      <Box
+        borderRadius="10px"
+        p={2}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        textAlign={"center"}
+        bgcolor={themeValue("#F9F9F9", "#313234")}
+        position={"relative"}
+        height={"100px"}
+        sx={{
+          transition: "ease-in 0.05s",
+
+          "&:hover": {
+            boxShadow: "0 0 4px #11b0c885",
+          },
+        }}
+      >
+        <Image
+          style={{
+            position: "absolute",
+            top: -25,
+            left: "50%",
+            transform: "translateX(-50%)",
+            filter: themeValue("invert(0%)", "invert(100%)"),
+          }}
+          height={40}
+          width={40}
+          src="/homeimages/iconPlanet.png"
+          alt="iconPlanet"
+        />
+        <Typography variant="subtitle2" color="text.primary">
+          {type}
+        </Typography>
+        <Typography lineHeight={1.2} variant="subtitle1" color="primary.main">
+          {name}
+        </Typography>
+      </Box>
+    </LinkTo>
+  );
 }

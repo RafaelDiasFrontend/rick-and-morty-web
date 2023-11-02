@@ -33,13 +33,11 @@ export default function FilterCharacter() {
     {
       text: "Localizações",
       slug: "locations",
-
       srcIcon: <PlanetIcon />,
     },
     {
       text: "Episódios",
       slug: "episodes",
-
       srcIcon: <MonitorPlayIcon />,
     },
   ];

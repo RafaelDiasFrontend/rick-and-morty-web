@@ -38,6 +38,7 @@ const CharacterDetail = ({
     },
   ]
 
+
   return (
     <Layout>
       {/* hero */}
@@ -78,9 +79,9 @@ const CharacterDetail = ({
               fontSize={'32px'}
               marginBottom={'52px'}
             >
-              <OndemandVideoIcon fontSize={'inherit'} />
-              <Typography fontSize={['1rem', '1.5rem']}>
-                Participa de 51 episódios
+              <OndemandVideoIcon fontSize={"inherit"} />
+              <Typography fontSize={["1rem", "1.5rem"]}>
+                Participa de {episode?.length} episódios
               </Typography>
             </Box>
 
