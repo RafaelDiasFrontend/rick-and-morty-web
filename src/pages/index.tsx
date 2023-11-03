@@ -8,6 +8,7 @@ import { fetchAll } from "@/lib/services/getAllService";
 import CharacterType from "@/lib/types/CharacterType";
 import EpisodeType from "@/lib/types/EpisodeType";
 import LocationType from "@/lib/types/LocationType";
+import { Box } from "@mui/material";
 
 interface HomePageProps {
   data: {
