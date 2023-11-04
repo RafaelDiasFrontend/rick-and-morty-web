@@ -92,7 +92,7 @@ const LocationDetail = ({
               gap={'8px'}
             >
               <Image
-                src='/svgs/AlienLight.svg'
+                src='/svgs/alienLight.svg'
                 alt='icone-de-personagens'
                 width={isMobile ? 16 : 32}
                 height={isMobile ? 16 : 32}

@@ -3,12 +3,10 @@ import Filter from '@/components/homepage/Filter'
 import LocationsList from '@/components/homepage/LocationsList'
 import { fetchLocations } from '@/lib/services/locations/locationsServices'
 import LocationType from '@/lib/types/LocationType'
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { Box, Typography } from '@mui/material'
+import { Pagination, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import ReactPaginate from 'react-paginate'
 
 interface LocationDetailProps {
   data: LocationType[]
@@ -21,17 +19,19 @@ export default function Locations({ data, pages, count }: LocationDetailProps) {
 
   const initialPage = Number(router.query.page) || 1
 
-  const [currentPage, setCurrentPage] = useState(initialPage - 1)
+  const [currentPage, setCurrentPage] = useState(initialPage - 0)
+
   const pageSize = 20
 
-  const handlePageChange = (selectedPage: { selected: number }) => {
-    const newPage = selectedPage.selected
-    console.log(newPage)
-    if (newPage === 0) {
-      router.push(`/locations`)
-    } else if (newPage !== currentPage) {
-      router.push(`/locations?page=${newPage + 1}`)
-    }
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number,
+  ) => {
+    const newPage = page
+    setCurrentPage(newPage)
+
+    const nextPage = newPage === 1 ? '/locations' : `/locations?page=${newPage}`
+    router.push(nextPage)
   }
 
   return (
@@ -44,21 +44,14 @@ export default function Locations({ data, pages, count }: LocationDetailProps) {
       <LocationsList showTitle={false} locations={data} />
 
       {data ? (
-        <Box display={'flex'} justifyContent={'center'}>
-          <ReactPaginate
-            previousLabel={<KeyboardArrowLeft />}
-            nextLabel={<KeyboardArrowRight />}
-            breakLabel={'...'}
-            renderOnZeroPageCount={null}
-            pageCount={Math.ceil(count / pageSize)}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageChange}
-            containerClassName={'pagination'}
-            activeClassName={'active'}
-            forcePage={currentPage}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Pagination
+            color={'primary'}
+            count={Math.ceil(count / pageSize)}
+            page={currentPage}
+            onChange={handlePageChange}
           />
-        </Box>
+        </div>
       ) : null}
     </Layout>
   )

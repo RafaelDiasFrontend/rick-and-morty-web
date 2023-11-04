@@ -3,12 +3,10 @@ import CharactersList from '@/components/homepage/CharactersList'
 import Filter from '@/components/homepage/Filter'
 import { fetchCharacters } from '@/lib/services/characters/characterServices'
 import CharacterType from '@/lib/types/CharacterType'
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { Box, Container, Typography } from '@mui/material'
+import { Pagination, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import ReactPaginate from 'react-paginate'
 
 interface CharacterDetailProps {
   data: CharacterType[]
@@ -25,17 +23,19 @@ export default function Characters({
 
   const initialPage = Number(router.query.page) || 1
 
-  const [currentPage, setCurrentPage] = useState(initialPage - 1)
+  const [currentPage, setCurrentPage] = useState(initialPage - 0)
   const pageSize = 20
 
-  const handlePageChange = (selectedPage: { selected: number }) => {
-    const newPage = selectedPage.selected
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number,
+  ) => {
+    const newPage = page
+    setCurrentPage(newPage)
 
-    if (newPage === 0) {
-      router.push(`/characters`)
-    } else if (newPage !== currentPage) {
-      router.push(`/characters?page=${newPage + 1}`)
-    }
+    const nextPage =
+      newPage === 1 ? '/characters' : `/characters?page=${newPage}`
+    router.push(nextPage)
   }
 
   return (
@@ -48,21 +48,14 @@ export default function Characters({
       <CharactersList showTitle={false} characters={data} />
 
       {data ? (
-        <Box display={'flex'} justifyContent={'center'}>
-          <ReactPaginate
-            previousLabel={<KeyboardArrowLeft />}
-            nextLabel={<KeyboardArrowRight />}
-            breakLabel={'...'}
-            renderOnZeroPageCount={null}
-            pageCount={Math.ceil(count / pageSize)}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageChange}
-            containerClassName={'pagination'}
-            activeClassName={'active'}
-            forcePage={currentPage}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Pagination
+            color={'primary'}
+            count={Math.ceil(count / pageSize)}
+            page={currentPage}
+            onChange={handlePageChange}
           />
-        </Box>
+        </div>
       ) : null}
     </Layout>
   )
