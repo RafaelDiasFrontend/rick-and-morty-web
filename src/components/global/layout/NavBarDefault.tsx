@@ -24,7 +24,7 @@ const drawerWidth = 240;
 
 const navItems = [
   { name: "Home", link: "/" },
-  { name: "Episódios", link: "/apisodes" },
+  { name: "Episódios", link: "/episodes" },
   { name: "Personagens", link: "/characters" },
   { name: "Locais", link: "/locations" },
 ];
