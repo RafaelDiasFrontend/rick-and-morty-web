@@ -3,12 +3,10 @@ import EpisodesList from '@/components/homepage/EpisodesList'
 import Filter from '@/components/homepage/Filter'
 import { fetchEpisodes } from '@/lib/services/episodes/episodesServices'
 import EpisodeType from '@/lib/types/EpisodeType'
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { Box, Typography } from '@mui/material'
+import { Pagination, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import ReactPaginate from 'react-paginate'
 
 interface EpisodeDetailProps {
   data: EpisodeType[]
@@ -21,17 +19,19 @@ export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
 
   const initialPage = Number(router.query.page) || 1
 
-  const [currentPage, setCurrentPage] = useState(initialPage - 1)
+  const [currentPage, setCurrentPage] = useState(initialPage - 0)
+
   const pageSize = 20
 
-  const handlePageChange = (selectedPage: { selected: number }) => {
-    const newPage = selectedPage.selected
-    console.log(newPage)
-    if (newPage === 0) {
-      router.push(`/episodes`)
-    } else if (newPage !== currentPage) {
-      router.push(`/episodes?page=${newPage + 1}`)
-    }
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number,
+  ) => {
+    const newPage = page
+    setCurrentPage(newPage)
+
+    const nextPage = newPage === 1 ? '/episodes' : `/episodes?page=${newPage}`
+    router.push(nextPage)
   }
 
   return (
@@ -44,21 +44,14 @@ export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
       <EpisodesList showTitle={false} episodes={data} />
 
       {data ? (
-        <Box display={'flex'} justifyContent={'center'}>
-          <ReactPaginate
-            previousLabel={<KeyboardArrowLeft />}
-            nextLabel={<KeyboardArrowRight />}
-            breakLabel={'...'}
-            renderOnZeroPageCount={null}
-            pageCount={Math.ceil(count / pageSize)}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageChange}
-            containerClassName={'pagination'}
-            activeClassName={'active'}
-            forcePage={currentPage}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Pagination
+            color={'primary'}
+            count={Math.ceil(count / pageSize)}
+            page={currentPage}
+            onChange={handlePageChange}
           />
-        </Box>
+        </div>
       ) : null}
     </Layout>
   )
