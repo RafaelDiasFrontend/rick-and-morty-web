@@ -1,27 +1,23 @@
+
 # Site rick e morty
 
-Este site é dedicado a fornecer informações sobre a famosa série "Rick and Morty" por meio de uma API pública e de código aberto.
+Este site foi desenvolvido exclusivamente para diversão, sem qualquer intenção de lucro com o título. É uma homenagem à famosa série "Rick and Morty" e tem como objetivo fornecer informações e recursos relacionados à série por meio de uma API pública. 
+ ## Melhorias
 
-## Features
-
-- GraphQL + Apollo ✅
-- Criar Layout
-- Criar rotas
-  - Characters, characters[id], characters(filter)
-  - locations, locations[id], locations(filter)
-  - episodes, episodes[id], episodes(filter)
-- Configurar requisições
-- Configurar Paginate
-
+ - [ ]  Arrumar bug no react paginate ou criar um paginate custom e criar css.
+ - [ ]  criar css do paginate.
+ - [ ]  Arrumar bugs nos cards.
+ - [ ]  Arrumar bugs de responsividade
+ - [ ]  Criar pagina sobre o local
 ## Como instalar
 
 ```bash
-  git
-  cd
+  git https://github.com/EdgarSantiago/rick-and-morty-web
+  cd rick-and-morty-web
   npm install ou yarn install
   npm run dev ou yarn run dev
 ```
-
+    
 ## Agradecimentos
 
 Agradecemos à comunidade de "Rickandmortyapi" por fornecer e manter a API pública usada neste projeto. https://rickandmortyapi.com/documentation/#character-schema
