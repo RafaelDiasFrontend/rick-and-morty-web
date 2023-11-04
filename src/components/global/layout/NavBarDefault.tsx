@@ -27,6 +27,7 @@ const navItems = [
   { name: "Episódios", link: "/episodes" },
   { name: "Personagens", link: "/characters" },
   { name: "Locais", link: "/locations" },
+  { name: "404", link: "/404" },
 ];
 
 export default function NavBarDefault(props: Props) {
