@@ -14,27 +14,35 @@ import Image from "next/image";
 import LinkTo from "../global/LinkTo";
 interface LocationsListProps {
   locations?: LocationType[];
+  showTitle?: Boolean;
 }
 
-export default function LocationsList({ locations }: LocationsListProps) {
+export default function LocationsList({
+  locations,
+  showTitle = true,
+}: LocationsListProps) {
   return (
     <Box display={"flex"} flexDirection={"column"} gap={5}>
-      <Box alignItems="center" display={"flex"} gap={2}>
-        <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
-          Localizações
-        </Typography>
-        <Button
-          startIcon={<GridViewOutlined />}
-          sx={{
-            borderRadius: "150px",
-            color: "white",
-            textTransform: "initial",
-          }}
-          variant="contained"
-        >
-          Ver todos
-        </Button>
-      </Box>
+      {showTitle && (
+        <Box alignItems="center" display={"flex"} gap={2}>
+          <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
+            Episódios
+          </Typography>
+          <LinkTo href="/episodes">
+            <Button
+              startIcon={<GridViewOutlined />}
+              sx={{
+                borderRadius: "150px",
+                color: "white",
+                textTransform: "initial",
+              }}
+              variant="contained"
+            >
+              Ver todos
+            </Button>
+          </LinkTo>
+        </Box>
+      )}
       <Grid container spacing={2}>
         {locations?.map((location, index) => (
           <Grid key={index} item xs={6} sm={4} md={3} lg={2}>

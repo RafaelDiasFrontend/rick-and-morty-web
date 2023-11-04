@@ -1,21 +1,23 @@
 import Layout from "@/components/global/Layout";
 import EpisodesList from "@/components/homepage/EpisodesList";
 import Filter from "@/components/homepage/Filter";
+import LocationsList from "@/components/homepage/LocationsList";
 import { fetchEpisodes } from "@/lib/services/episodes/episodesServices";
-import EpisodeType from "@/lib/types/EpisodeType";
+import { fetchLocations } from "@/lib/services/locations/locationsServices";
+import LocationType from "@/lib/types/LocationType";
 import { Box, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 
-interface EpisodeDetailProps {
-  data: EpisodeType[];
+interface LocationDetailProps {
+  data: LocationType[];
   pages: number;
   count: number;
 }
 
-export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
+export default function Locations({ data, pages, count }: LocationDetailProps) {
   const router = useRouter();
 
   const initialPage = Number(router.query.page) || 1;
@@ -27,9 +29,9 @@ export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
     const newPage = selectedPage.selected;
     console.log(newPage);
     if (newPage === 0) {
-      router.push(`/episodes`);
+      router.push(`/locations`);
     } else if (newPage !== currentPage) {
-      router.push(`/episodes?page=${newPage + 1}`);
+      router.push(`/locations?page=${newPage + 1}`);
     }
   };
 
@@ -58,7 +60,7 @@ export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
         </Box>
       ) : null}
 
-      <EpisodesList showTitle={false} episodes={data} />
+      <LocationsList showTitle={false} locations={data} />
 
       {data ? (
         <Box>
@@ -85,14 +87,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const page = context.query.page || "1";
 
   try {
-    const response = await fetchEpisodes(Number(page));
-    const eps = response.episodes.results;
-    const pages = response.episodes.info.pages;
-    const count = response.episodes.info.count;
+    const response = await fetchLocations(Number(page));
+    console.log(response);
+    const locs = response.locations.results;
+    const pages = response.locations.info.pages;
+    const count = response.locations.info.count;
 
     return {
       props: {
-        data: eps,
+        data: locs,
         pages: pages,
         count: count,
       },

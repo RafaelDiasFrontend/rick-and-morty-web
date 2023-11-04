@@ -7,7 +7,7 @@ import {
   LightMode,
   LightModeOutlined,
 } from "@mui/icons-material";
-
+import NextNProgress from "nextjs-progressbar";
 import { Box, Button, CssBaseline, PaletteMode, useTheme } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import type { AppProps } from "next/app";
@@ -67,6 +67,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <CssBaseline />
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
+          <NextNProgress />
           <Component {...pageProps} />
         </ThemeProvider>
       </ColorModeContext.Provider>
