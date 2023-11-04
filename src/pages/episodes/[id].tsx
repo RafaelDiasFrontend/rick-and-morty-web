@@ -1,13 +1,15 @@
 import Layout from '@/components/global/Layout'
+import EpisodesList from '@/components/homepage/EpisodesList'
 import {
   fetchEpisodeById,
   fetchEpisodes,
 } from '@/lib/services/episodes/episodesServices'
 import EpisodeType from '@/lib/types/EpisodeType'
-import { Box, Container, Typography } from '@mui/material'
-import { GetServerSideProps } from 'next'
+import { useTheme } from '@emotion/react'
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo'
-import EpisodesList from '@/components/homepage/EpisodesList'
+import { Box, Container, Typography, useMediaQuery } from '@mui/material'
+import { GetServerSideProps } from 'next'
+import Image from 'next/image'
 
 const EpisodeDetail = ({
   episode: epData,
@@ -17,6 +19,8 @@ const EpisodeDetail = ({
   episodes: EpisodeType[]
 }) => {
   const { name, air_date, episode: ep, characters } = epData
+  const isMobile = useMediaQuery('(max-width:600px)')
+  const theme = useTheme()
   return (
     <Layout>
       <Container>
@@ -26,10 +30,12 @@ const EpisodeDetail = ({
             width={['auto', '35rem']}
             marginTop={['20px', '0']}
           >
-            <Box fontSize={['40px', '72px']}>
-              <OndemandVideoIcon
-                sx={{ fontSize: '100%', marginBottom: '12px' }}
-              />
+            <Box
+              display={'flex'}
+              fontSize={['40px', '72px']}
+              marginBottom={'8px'}
+            >
+              <OndemandVideoIcon sx={{ fontSize: '100%' }} />
             </Box>
             <Typography
               fontWeight={'bold'}
@@ -51,16 +57,20 @@ const EpisodeDetail = ({
                 flexWrap={'wrap'}
                 alignItems={'center'}
               >
-                <img
+                <Image
                   src='/svgs/calendar.svg'
                   alt='ricky and morty'
                   style={{ marginRight: '4px' }}
+                  width={isMobile ? 16 : 32}
+                  height={isMobile ? 16 : 32}
                 />
                 {air_date}
-                <img
+                <Image
                   src='/svgs/queu.svg'
                   alt='ricky and morty'
                   style={{ margin: '0 8px 0 24px' }}
+                  width={isMobile ? 16 : 32}
+                  height={isMobile ? 16 : 32}
                 />
                 {ep}
               </Typography>
@@ -72,36 +82,41 @@ const EpisodeDetail = ({
               alignItems={'center'}
               gap={'8px'}
             >
-              <img
+              <Image
                 src='/svgs/charactersSmile.svg'
                 alt='icone-de-personagens'
-                width={'32px'}
+                width={isMobile ? 16 : 32}
+                height={isMobile ? 16 : 32}
               />
-              {characters?.length} Personagens participaram deste episódio
+              <b style={{ color: theme.palette.primary.main }}>
+                {characters?.length}
+              </b>{' '}
+              Personagens participaram deste episódio
             </Typography>
           </Box>
         </Box>
       </Container>
-      <Box
-        display={'flex'}
-        gap={'16px'}
-        margin={['50px 0 10px', '70px 0 10px']}
-        px={['0', '40px']}
-      >
-        <Box fontSize={['30px', '48px']}>
-          <OndemandVideoIcon sx={{ fontSize: '100%' }} />
-        </Box>
-
-        <Typography
-          fontSize={['1rem', '1.5rem']}
-          fontWeight={'bold'}
-          lineHeight={'normal'}
+      <Container>
+        <Box
+          display={'flex'}
+          gap={'16px'}
+          margin={['50px 0 10px', '70px 0 10px']}
         >
-          Mais <br />
-          Episodios
-        </Typography>
-      </Box>
-      <EpisodesList episodes={episodes} showTitle={false} />
+          <Box fontSize={['30px', '48px']}>
+            <OndemandVideoIcon sx={{ fontSize: '100%' }} />
+          </Box>
+
+          <Typography
+            fontSize={['1rem', '1.5rem']}
+            fontWeight={'bold'}
+            lineHeight={'normal'}
+          >
+            Mais <br />
+            Episodios
+          </Typography>
+        </Box>
+        <EpisodesList episodes={episodes} showTitle={false} />
+      </Container>
     </Layout>
   )
 }

@@ -1,18 +1,19 @@
-import Layout from "@/components/global/Layout";
-import CharactersList from "@/components/homepage/CharactersList";
-import Filter from "@/components/homepage/Filter";
-import { fetchCharacters } from "@/lib/services/characters/characterServices";
-import CharacterType from "@/lib/types/CharacterType";
-import { Box, Container, Typography } from "@mui/material";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import ReactPaginate from "react-paginate";
+import Layout from '@/components/global/Layout'
+import CharactersList from '@/components/homepage/CharactersList'
+import Filter from '@/components/homepage/Filter'
+import { fetchCharacters } from '@/lib/services/characters/characterServices'
+import CharacterType from '@/lib/types/CharacterType'
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
+import { Box, Container, Typography } from '@mui/material'
+import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import ReactPaginate from 'react-paginate'
 
 interface CharacterDetailProps {
-  data: CharacterType[];
-  pages: number;
-  count: number;
+  data: CharacterType[]
+  pages: number
+  count: number
 }
 
 export default function Characters({
@@ -20,79 +21,61 @@ export default function Characters({
   pages,
   count,
 }: CharacterDetailProps) {
-  const router = useRouter();
+  const router = useRouter()
 
-  const initialPage = Number(router.query.page) || 1;
+  const initialPage = Number(router.query.page) || 1
 
-  const [currentPage, setCurrentPage] = useState(initialPage - 1);
-  const pageSize = 20;
+  const [currentPage, setCurrentPage] = useState(initialPage - 1)
+  const pageSize = 20
 
   const handlePageChange = (selectedPage: { selected: number }) => {
-    const newPage = selectedPage.selected;
+    const newPage = selectedPage.selected
 
     if (newPage === 0) {
-      router.push(`/characters`);
+      router.push(`/characters`)
     } else if (newPage !== currentPage) {
-      router.push(`/characters?page=${newPage + 1}`);
+      router.push(`/characters?page=${newPage + 1}`)
     }
-  };
+  }
 
   return (
-    <Layout gap={"20px"}>
-      <Typography color="text.primary" variant="h5" fontWeight={"bold"}>
+    <Layout gap={'20px'}>
+      <Typography color='text.primary' variant='h5' fontWeight={'bold'}>
         Personagens
       </Typography>
       <Filter />
 
-      {data ? (
-        <Box>
-          <ReactPaginate
-            previousLabel={"Voltar"}
-            nextLabel={"Próximo"}
-            breakLabel={"..."}
-            renderOnZeroPageCount={null}
-            pageCount={Math.ceil(count / pageSize)}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageChange}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            forcePage={currentPage}
-          />
-        </Box>
-      ) : null}
-
       <CharactersList showTitle={false} characters={data} />
 
       {data ? (
-        <Box>
+        <Box display={'flex'} justifyContent={'center'}>
           <ReactPaginate
-            previousLabel={"Voltar"}
-            nextLabel={"Próximo"}
-            breakLabel={"..."}
+            previousLabel={<KeyboardArrowLeft />}
+            nextLabel={<KeyboardArrowRight />}
+            breakLabel={'...'}
             renderOnZeroPageCount={null}
             pageCount={Math.ceil(count / pageSize)}
             marginPagesDisplayed={1}
             pageRangeDisplayed={3}
             onPageChange={handlePageChange}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
             forcePage={currentPage}
           />
         </Box>
       ) : null}
     </Layout>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const page = context.query.page || "1";
+  const page = context.query.page || '1'
 
   try {
-    const response = await fetchCharacters(Number(page));
-    const chars = response.characters.results;
-    const pages = response.characters.info.pages;
-    const count = response.characters.info.count;
+    const response = await fetchCharacters(Number(page))
+    const chars = response.characters.results
+    const pages = response.characters.info.pages
+    const count = response.characters.info.count
 
     return {
       props: {
@@ -100,12 +83,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         pages: pages,
         count: count,
       },
-    };
+    }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error fetching data:', error)
 
     return {
       notFound: true,
-    };
+    }
   }
-};
+}

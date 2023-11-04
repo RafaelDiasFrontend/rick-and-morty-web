@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #11b0c8;
+}
+
 .wrapper {
   position: absolute;
   margin: auto;
@@ -25,8 +31,8 @@
 }
 
 .wrapper span:before {
-  content: "";
-  background-image: url("https://staticdelivery.nexusmods.com/mods/1151/images/528-0-1447526230.png");
+  content: '';
+  background-image: url('https://staticdelivery.nexusmods.com/mods/1151/images/528-0-1447526230.png');
   position: absolute;
   height: 100%;
   width: 100%;
@@ -53,6 +59,59 @@
   margin-top: 10px;
   cursor: pointer;
   font-weight: 900;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.pagination a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 47px;
+  height: 47px;
+  margin: 0 5px;
+  border: transparent;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: #313234;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.pagination .previous {
+  border: 0;
+}
+
+.pagination .next {
+  background-color: transparent;
+}
+
+.pagination .active a {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.pagination li {
+  display: inline-block;
+}
+
+.pagination ul {
+  list-style: none;
+}
+
+.pagination {
+  margin: 20px 0;
 }
 
 @keyframes rotateIn {
