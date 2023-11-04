@@ -66,14 +66,15 @@ function LocationCard({ locationData }: { locationData: LocationType }) {
         justifyContent={"center"}
         alignItems={"center"}
         textAlign={"center"}
-        bgcolor={themeValue("#F9F9F9", "#313234")}
         position={"relative"}
         height={"100px"}
         sx={{
-          transition: "ease-in 0.05s",
-
+          borderRadius: "16px",
+          border: `1px solid ${themeValue("#11111117", "#fafafa25")}`,
+          transition: "box-shadow 0.2s ease, transform 0.2s ease", // Add transform to the transition
           "&:hover": {
-            boxShadow: "0 0 4px #11b0c885",
+            border: "1px solid #11b0c885",
+            transform: "translateY(-5px)", // Move the element 5 pixels up on hover
           },
         }}
       >
