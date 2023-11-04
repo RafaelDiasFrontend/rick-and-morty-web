@@ -50,6 +50,7 @@ export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
             count={Math.ceil(count / pageSize)}
             page={currentPage}
             onChange={handlePageChange}
+            boundaryCount={0}
           />
         </div>
       ) : null}

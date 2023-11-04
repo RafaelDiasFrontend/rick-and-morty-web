@@ -54,6 +54,7 @@ export default function Characters({
             count={Math.ceil(count / pageSize)}
             page={currentPage}
             onChange={handlePageChange}
+            boundaryCount={0}
           />
         </div>
       ) : null}
