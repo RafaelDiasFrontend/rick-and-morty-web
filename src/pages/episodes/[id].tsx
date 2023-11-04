@@ -5,9 +5,15 @@ import {
   fetchEpisodes,
 } from '@/lib/services/episodes/episodesServices'
 import EpisodeType from '@/lib/types/EpisodeType'
-import { useTheme } from '@emotion/react'
+
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo'
-import { Box, Container, Typography, useMediaQuery } from '@mui/material'
+import {
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 
