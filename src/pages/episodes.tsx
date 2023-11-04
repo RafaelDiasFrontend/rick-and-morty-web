@@ -1,25 +1,21 @@
 import Layout from "@/components/global/Layout";
-import CharactersList from "@/components/homepage/CharactersList";
+import EpisodesList from "@/components/homepage/EpisodesList";
 import Filter from "@/components/homepage/Filter";
-import { fetchCharacters } from "@/lib/services/characters/characterServices";
-import CharacterType from "@/lib/types/CharacterType";
-import { Box, Container, Typography } from "@mui/material";
+import { fetchEpisodes } from "@/lib/services/episodes/episodesServices";
+import EpisodeType from "@/lib/types/EpisodeType";
+import { Box, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 
-interface CharacterDetailProps {
-  data: CharacterType[];
+interface EpisodeDetailProps {
+  data: EpisodeType[];
   pages: number;
   count: number;
 }
 
-export default function Characters({
-  data,
-  pages,
-  count,
-}: CharacterDetailProps) {
+export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
   const router = useRouter();
 
   const initialPage = Number(router.query.page) || 1;
@@ -29,11 +25,11 @@ export default function Characters({
 
   const handlePageChange = (selectedPage: { selected: number }) => {
     const newPage = selectedPage.selected;
-
+    console.log(newPage);
     if (newPage === 0) {
-      router.push(`/characters`);
+      router.push(`/episodes`);
     } else if (newPage !== currentPage) {
-      router.push(`/characters?page=${newPage + 1}`);
+      router.push(`/episodes?page=${newPage + 1}`);
     }
   };
 
@@ -62,7 +58,7 @@ export default function Characters({
         </Box>
       ) : null}
 
-      <CharactersList showTitle={false} characters={data} />
+      <EpisodesList showTitle={false} episodes={data} />
 
       {data ? (
         <Box>
@@ -89,10 +85,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const page = context.query.page || "1";
 
   try {
-    const response = await fetchCharacters(Number(page));
-    const chars = response.characters.results;
-    const pages = response.characters.info.pages;
-    const count = response.characters.info.count;
+    const response = await fetchEpisodes(Number(page));
+    console.log(response);
+    const chars = response.episodes.results;
+    const pages = response.episodes.info.pages;
+    const count = response.episodes.info.count;
 
     return {
       props: {
