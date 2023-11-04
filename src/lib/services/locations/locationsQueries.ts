@@ -32,8 +32,6 @@ export const GET_LOCATION_BY_ID = gql`
         id
         name
       }
-      url
-      created
     }
   }
 `;

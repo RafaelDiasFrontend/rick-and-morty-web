@@ -57,7 +57,7 @@ export default function LocationsList({
 function LocationCard({ locationData }: { locationData: LocationType }) {
   const { type, name, id } = locationData;
   return (
-    <LinkTo href={`/location/${id}`}>
+    <LinkTo href={`/locations/${id}`}>
       <Box
         borderRadius="10px"
         p={2}
