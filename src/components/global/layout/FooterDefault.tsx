@@ -4,6 +4,7 @@ import { Box, Container, Divider, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import LinkTo from "../LinkTo";
+import themeValue from "@/lib/hooks";
 export default function FooterDefault() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -53,7 +54,10 @@ export default function FooterDefault() {
           onClick={scrollToTop}
         >
           <Typography variant="subtitle2">Voltar ao topo</Typography>
-          <IconButton color="default" sx={{ border: "2px solid black" }}>
+          <IconButton
+            color="default"
+            sx={{ border: `2px solid ${themeValue("#111111", "#fafafa")}` }}
+          >
             <NorthIcon />
           </IconButton>
         </Box>
