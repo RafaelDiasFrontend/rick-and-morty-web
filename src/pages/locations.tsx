@@ -50,6 +50,7 @@ export default function Locations({ data, pages, count }: LocationDetailProps) {
             count={Math.ceil(count / pageSize)}
             page={currentPage}
             onChange={handlePageChange}
+            boundaryCount={0}
           />
         </div>
       ) : null}
