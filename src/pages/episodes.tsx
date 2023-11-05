@@ -37,7 +37,7 @@ export default function Episodes({ data, pages, count }: EpisodeDetailProps) {
   return (
     <Layout gap={'20px'}>
       <Typography color='text.primary' variant='h5' fontWeight={'bold'}>
-        Personagens
+        Episódios
       </Typography>
       <Filter />
 

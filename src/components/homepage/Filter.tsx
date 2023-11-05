@@ -1,4 +1,4 @@
-import { Search } from "@mui/icons-material";
+import { Search } from '@mui/icons-material'
 import {
   Box,
   Button,
@@ -6,110 +6,110 @@ import {
   OutlinedInput,
   Typography,
   useTheme,
-} from "@mui/material";
+} from '@mui/material'
 
-import themeValue from "@/lib/hooks";
-import { fetchAllFilter } from "@/lib/services/getAllService";
-import MonitorPlayIcon from "@mui/icons-material/Monitor";
-import SmileIcon from "@mui/icons-material/Mood";
-import PlanetIcon from "@mui/icons-material/Public";
-import React, { useEffect, useState } from "react";
-import LinkTo from "../global/LinkTo";
+import themeValue from '@/lib/hooks'
+import { fetchAllFilter } from '@/lib/services/getAllService'
+import MonitorPlayIcon from '@mui/icons-material/Monitor'
+import SmileIcon from '@mui/icons-material/Mood'
+import PlanetIcon from '@mui/icons-material/Public'
+import React, { useEffect, useState } from 'react'
+import LinkTo from '../global/LinkTo'
 
 export default function Filter() {
-  const theme = useTheme();
-  const [activeFilter, setActiveFilter] = React.useState("Personagens");
-  const [activeFilterSlug, setActiveFilterSlug] = React.useState("characters");
-  const [name, setName] = useState("");
-  const [data, setData] = useState([]);
+  const theme = useTheme()
+  const [activeFilter, setActiveFilter] = React.useState('Personagens')
+  const [activeFilterSlug, setActiveFilterSlug] = React.useState('characters')
+  const [name, setName] = useState('')
+  const [data, setData] = useState([])
 
   const filterCharacterItems = [
     {
-      text: "Personagens",
-      slug: "characters",
+      text: 'Personagens',
+      slug: 'characters',
       srcIcon: <SmileIcon />,
     },
     {
-      text: "Localizações",
-      slug: "locations",
+      text: 'Localizações',
+      slug: 'locations',
       srcIcon: <PlanetIcon />,
     },
     {
-      text: "Episódios",
-      slug: "episodes",
+      text: 'Episódios',
+      slug: 'episodes',
       srcIcon: <MonitorPlayIcon />,
     },
-  ];
+  ]
 
   async function fetchAndSetData() {
-    if (name === "") {
+    if (name === '') {
       // Limpa os dados se estiver vazio
-      setData([]);
+      setData([])
     } else {
       try {
-        const filterData = await fetchAllFilter({ name: name });
+        const filterData = await fetchAllFilter({ name: name })
         switch (activeFilter) {
-          case "Personagens":
-            setData(filterData.characters.results);
-            break;
-          case "Localizações":
-            setData(filterData.locations.results);
-            break;
-          case "Episódios":
-            setData(filterData.episodes.results);
-            break;
+          case 'Personagens':
+            setData(filterData.characters.results)
+            break
+          case 'Localizações':
+            setData(filterData.locations.results)
+            break
+          case 'Episódios':
+            setData(filterData.episodes.results)
+            break
         }
       } catch (error) {
-        console.error("Error puxando os dados:", error);
+        console.error('Error puxando os dados:', error)
       }
     }
   }
 
   useEffect(() => {
-    fetchAndSetData();
-  }, [name, activeFilter]);
+    fetchAndSetData()
+  }, [name, activeFilter])
 
   return (
     <>
       <Box
-        display={"flex"}
-        width={"100%"}
-        justifyContent={"space-between"}
+        display={'flex'}
+        width={'100%'}
+        justifyContent={'space-between'}
         columnGap={15}
         gap={2}
-        flexWrap={"wrap"}
-        marginBottom={"24px"}
+        flexWrap={'wrap'}
+        marginBottom={'24px'}
       >
         <FormControl
-          sx={{ width: "300px", position: "relative" }}
-          variant="outlined"
+          sx={{ width: '300px', position: 'relative' }}
+          variant='outlined'
         >
           <OutlinedInput
             onChange={(e) => setName(e.target.value)}
             sx={{
               borderRadius: 10,
-              width: "100%",
-              height: "48px",
+              width: '100%',
+              height: '48px',
               borderColor: theme.palette.background.default,
             }}
             placeholder={`Pesquisar por ${activeFilter}`}
-            id="outlined-adornment-weight"
+            id='outlined-adornment-weight'
             endAdornment={<Search />}
-            aria-describedby="outlined-weight-helper-text"
+            aria-describedby='outlined-weight-helper-text'
             inputProps={{
-              "aria-label": "weight",
+              'aria-label': 'weight',
             }}
           />
           {data.length > 1 && (
             <Box
               zIndex={999}
-              position={"absolute"}
+              position={'absolute'}
               top={50}
-              bgcolor={themeValue("#fafafa", "#111111")}
-              borderRadius={"16px"}
+              bgcolor={themeValue('#fafafa', '#111111')}
+              borderRadius={'16px'}
               p={2}
-              width={"400px"}
-              border="2px solid #11111148"
+              width={'400px'}
+              border='2px solid #11111148'
             >
               {data
                 ? data.map((data: any, index) => (
@@ -117,29 +117,29 @@ export default function Filter() {
                       key={index}
                       href={`/${activeFilterSlug}/${data.id}`}
                     >
-                      <Typography color="primary" variant="h6" key={index}>
+                      <Typography color='primary' variant='h6' key={index}>
                         {data.name}
                       </Typography>
                     </LinkTo>
                   ))
-                : "Nada encontrado"}
+                : 'Nada encontrado'}
             </Box>
           )}
         </FormControl>
 
         <Box
-          flexWrap={"wrap"}
-          display={"flex"}
-          alignItems={"center"}
+          flexWrap={'wrap'}
+          display={'flex'}
+          alignItems={'center'}
           gap={2}
-          marginTop={["15px", "15px", "0"]}
+          marginTop={['15px', '15px', '0']}
         >
           <Typography
-            key="index"
-            variant="body1"
+            key='index'
+            variant='body1'
             color={theme.palette.text.primary}
-            whiteSpace={"nowrap"}
-            display={["none", "none", "none", "block"]}
+            whiteSpace={'nowrap'}
+            display={['none', 'none', 'none', 'block']}
           >
             Filtrar por:
           </Typography>
@@ -150,20 +150,20 @@ export default function Filter() {
                 borderRadius: 5,
                 color:
                   activeFilter === item.text
-                    ? "white"
+                    ? 'white'
                     : theme.palette.text.primary,
                 backgroundColor:
                   activeFilter === item.text
                     ? theme.palette.primary.main
-                    : "transparent",
-                textTransform: "initial",
+                    : 'transparent',
+                textTransform: 'initial',
               }}
-              variant={activeFilter === item.text ? "contained" : "text"}
+              variant={activeFilter === item.text ? 'contained' : 'text'}
               startIcon={item.srcIcon}
               onClick={() => {
-                setActiveFilter(item.text);
-                setActiveFilterSlug(item.slug);
-                setData([]);
+                setActiveFilter(item.text)
+                setActiveFilterSlug(item.slug)
+                setData([])
               }}
             >
               {item.text}
@@ -172,5 +172,8 @@ export default function Filter() {
         </Box>
       </Box>
     </>
-  );
+  )
+}
+function setPlaceholder(arg0: string) {
+  throw new Error('Function not implemented.')
 }
