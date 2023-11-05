@@ -37,7 +37,7 @@ export default function Locations({ data, pages, count }: LocationDetailProps) {
   return (
     <Layout gap={'20px'}>
       <Typography color='text.primary' variant='h5' fontWeight={'bold'}>
-        Personagens
+        Localizações
       </Typography>
       <Filter />
 
