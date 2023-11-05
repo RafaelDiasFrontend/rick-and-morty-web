@@ -37,16 +37,7 @@ export default function CharactersList({
 
       <Grid container spacing={2}>
         {characters.map((character, index) => (
-          <Grid
-            key={index}
-            item
-            xs={6}
-            sm={3}
-            md={3}
-            lg={2}
-            columns={5}
-            m={'auto'}
-          >
+          <Grid key={index} item xs={6} sm={3} md={3} lg={2} columns={5}>
             {character ? (
               <CharactersCard character={character} key={index} />
             ) : (
