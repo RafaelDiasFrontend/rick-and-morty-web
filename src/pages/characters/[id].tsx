@@ -4,7 +4,14 @@ import {
   fetchCharacters,
 } from '@/lib/services/characters/characterServices'
 import CharacterType from '@/lib/types/CharacterType'
-import { Box, Button, Container, Typography, useTheme } from '@mui/material'
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo'
@@ -22,6 +29,7 @@ const CharacterDetail = ({
     character
 
   const theme = useTheme()
+  const isMobile = useMediaQuery('(max-width:600px)')
 
   const characterDetails = [
     {
@@ -170,8 +178,14 @@ const CharacterDetail = ({
           gap={'16px'}
           margin={'114px 0 64px'}
           px={['0', '40px']}
+          alignItems={'center'}
         >
-          <img src='/svgs/charactersSmile.svg' alt='icone-de-personagens' />
+          <Image
+            src='/svgs/charactersSmile.svg'
+            alt='icone-de-personagens'
+            width={isMobile ? 32 : 48}
+            height={58}
+          />
           <Typography
             fontSize={['1rem', '1.5rem']}
             fontWeight={'bold'}
