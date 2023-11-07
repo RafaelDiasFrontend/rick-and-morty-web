@@ -11,11 +11,17 @@ interface LayoutProps {
   title?: String
   description?: String
   gap?: any
+  urlImageSeo?: String
+  keywords?: String
+  urlSeo?: String
 }
 
 export default function Layout({
   title = 'default',
-  description = 'default',
+  description = 'Descubra o mundo de Rick e Morty com informações, personagens e episódios empolgantes',
+  urlSeo = 'https://rick-and-morty-web-rose.vercel.app/',
+  urlImageSeo = 'https://rick-and-morty-web-rose.vercel.app/homeimages/herolightimage.png',
+  keywords = 'Rick and Morty, série, episódios, personagens',
   showNav = true,
   showFooter = true,
   children,
@@ -28,6 +34,21 @@ export default function Layout({
       <Head>
         <title>{mainTitle}</title>
         <meta name='description' content={String(description)} key='desc' />
+        <meta
+          name='description'
+          content={String(description)}
+          key='description'
+        />
+        <meta name='keywords' content={String(keywords)} />
+        <meta name='author' content='Seu Nome ou Nome da Empresa' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='robots' content='index, follow' />
+
+        {/* Meta tags para redes sociais (opcional) */}
+        <meta property='og:title' content={mainTitle} />
+        <meta property='og:description' content={String(description)} />
+        <meta property='og:image' content={String(urlImageSeo)} />
+        <meta property='og:url' content={String(urlSeo)} />
       </Head>
       {showNav && <NavBarDefault />}
 
