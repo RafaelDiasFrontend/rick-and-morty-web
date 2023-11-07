@@ -20,7 +20,7 @@ export default function Layout({
   title = 'default',
   description = 'Descubra o mundo de Rick e Morty com informações, personagens e episódios empolgantes',
   urlSeo = 'https://rick-and-morty-web-rose.vercel.app/',
-  urlImageSeo = 'https://rick-and-morty-web-rose.vercel.app/homeimages/herolightimage.png',
+  urlImageSeo = 'https://rick-and-morty-web-rose.vercel.app/homeimages/ricky-morty-seo.jpg',
   keywords = 'Rick and Morty, série, episódios, personagens',
   showNav = true,
   showFooter = true,
