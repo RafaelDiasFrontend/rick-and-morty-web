@@ -225,7 +225,6 @@ export const getStaticProps: GetStaticProps<CharacterDetailProps> = async ({
   params,
 }) => {
   const { id } = params as { id: string };
-  console.log(id);
   try {
     if (!id) {
       throw new Error("ID is missing.");
