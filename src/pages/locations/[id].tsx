@@ -28,7 +28,6 @@ const LocationDetail = ({
   const { name, type, dimension, residents } = location;
 
   const isMobile = useMediaQuery("(max-width:600px)");
-  console.log("locations", locations);
   return (
     <Layout>
       <Container>
@@ -137,15 +136,16 @@ interface LocationDetailProps {
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await fetchLocations(1);
   const locationsResults: LocationType[] = data.locations.results;
-
-  // Generate paths for each location ID
-  const paths = locationsResults.map((location: LocationType) => ({
-    params: { id: location.id?.toString() },
-  }));
+  const { count } = data.locations.info;
+  const paths = locationsResults.flatMap((location: LocationType) =>
+    Array.from({ length: count }, (_, i) => ({
+      params: { id: location.id?.toString(), page: (i + 2).toString() },
+    }))
+  );
 
   return {
     paths,
-    fallback: false, // Set to true if you want to enable incremental static regeneration
+    fallback: "blocking", // Set to true if you want to enable incremental static regeneration
   };
 };
 
@@ -153,7 +153,6 @@ export const getStaticProps: GetStaticProps<LocationDetailProps> = async ({
   params,
 }) => {
   const { id } = params as { id: string };
-  console.log(id);
   try {
     if (!id) {
       throw new Error("ID is missing.");
