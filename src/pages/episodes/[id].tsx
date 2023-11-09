@@ -133,10 +133,10 @@ interface EpisodeDetailProps {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await fetchEpisodes(1);
-  const charactersResult: EpisodeType[] = data.episodes.results;
+  const episodesResults: EpisodeType[] = data.episodes.results;
 
   // Generate paths for each episode ID
-  const paths = charactersResult.map((episode: EpisodeType) => ({
+  const paths = episodesResults.map((episode: EpisodeType) => ({
     params: { id: episode.id?.toString() },
   }));
 
@@ -159,10 +159,10 @@ export const getStaticProps: GetStaticProps<EpisodeDetailProps> = async ({
     // Fetch the specific episode data using the ID
     const episode = await fetchEpisodeById(id);
     const data = await fetchEpisodes(1);
-    const charactersResult: EpisodeType[] = data.episodes.results;
+    const episodesResults: EpisodeType[] = data.episodes.results;
 
     return {
-      props: { episode: episode, episodes: charactersResult },
+      props: { episode: episode, episodes: episodesResults },
     };
   } catch (error) {
     console.error("Error fetching episode data:", error);
