@@ -8,6 +8,7 @@ import { fetchAll } from "@/lib/services/getAllService";
 import CharacterType from "@/lib/types/CharacterType";
 import EpisodeType from "@/lib/types/EpisodeType";
 import LocationType from "@/lib/types/LocationType";
+import { GetStaticProps } from "next";
 
 interface HomePageProps {
   data: {
@@ -38,7 +39,7 @@ export default function ApolloClient({ data }: HomePageProps) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const data = await fetchAll();
     return {
@@ -58,4 +59,4 @@ export async function getStaticProps() {
       },
     };
   }
-}
+};
