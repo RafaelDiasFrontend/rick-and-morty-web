@@ -2,13 +2,7 @@
 # Site rick e morty
 
 Este site foi desenvolvido exclusivamente para diversão, sem qualquer intenção de lucro com o título. É uma homenagem à famosa série "Rick and Morty" e tem como objetivo fornecer informações e recursos relacionados à série por meio de uma API pública. 
- ## Melhorias
 
- - [ ]  Arrumar bug no react paginate ou criar um paginate custom e criar css.
- - [ ]  criar css do paginate.
- - [ ]  Arrumar bugs nos cards.
- - [ ]  Arrumar bugs de responsividade
- - [ ]  Criar pagina sobre o local
 ## Como instalar
 
 ```bash
