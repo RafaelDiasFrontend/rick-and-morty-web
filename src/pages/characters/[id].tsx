@@ -207,16 +207,17 @@ interface CharacterDetailProps {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await fetchCharacters(1);
-  const charactersResult: CharacterType[] = data.characters.results;
-
-  // Generate paths for each character ID
-  const paths = charactersResult.map((character: CharacterType) => ({
-    params: { id: character.id?.toString() },
-  }));
+  const charactersResults: CharacterType[] = data.characters.results;
+  const { pages } = data.characters.info;
+  const paths = charactersResults.flatMap((character: CharacterType) =>
+    Array.from({ length: pages }, (_, i) => ({
+      params: { id: character.id?.toString(), page: (i + 2).toString() },
+    }))
+  );
 
   return {
     paths,
-    fallback: false, // Set to true if you want to enable incremental static regeneration
+    fallback: "blocking", // Set to true if you want to enable incremental static regeneration
   };
 };
 

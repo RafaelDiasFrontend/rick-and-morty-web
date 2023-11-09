@@ -135,14 +135,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await fetchEpisodes(1);
   const episodesResults: EpisodeType[] = data.episodes.results;
 
-  // Generate paths for each episode ID
-  const paths = episodesResults.map((episode: EpisodeType) => ({
-    params: { id: episode.id?.toString() },
-  }));
-
+  const { pages } = data.episodes.info;
+  const paths = episodesResults.flatMap((episode: EpisodeType) =>
+    Array.from({ length: pages }, (_, i) => ({
+      params: { id: episode.id?.toString(), page: (i + 2).toString() },
+    }))
+  );
   return {
     paths,
-    fallback: false, // Set to true if you want to enable incremental static regeneration
+    fallback: "blocking",
   };
 };
 
@@ -150,7 +151,6 @@ export const getStaticProps: GetStaticProps<EpisodeDetailProps> = async ({
   params,
 }) => {
   const { id } = params as { id: string };
-  console.log(id);
   try {
     if (!id) {
       throw new Error("ID is missing.");

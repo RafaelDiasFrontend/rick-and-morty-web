@@ -136,16 +136,16 @@ interface LocationDetailProps {
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await fetchLocations(1);
   const locationsResults: LocationType[] = data.locations.results;
-  const { count } = data.locations.info;
+  const { pages } = data.locations.info;
   const paths = locationsResults.flatMap((location: LocationType) =>
-    Array.from({ length: count }, (_, i) => ({
+    Array.from({ length: pages }, (_, i) => ({
       params: { id: location.id?.toString(), page: (i + 2).toString() },
     }))
   );
 
   return {
     paths,
-    fallback: "blocking", // Set to true if you want to enable incremental static regeneration
+    fallback: "blocking",
   };
 };
 
